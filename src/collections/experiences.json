@@ -1,23 +1,51 @@
 [
 	{
-		"dates": "June 2018 · Present",
-		"role": "Front-end Engineer",
-		"company": "Full Truck Alliance",
-		"description": "Responsible for customer service and CRM system front-end development.",
-		"logo": "/assets/images/experiences/fta.ico"
+		"dates": "July 2024 · Present",
+		"role": "Founder",
+		"company": "Vectrro",
+		"description": "AI agents that automate back-office work for trucking (document intake, billing, outbound sales). Grew to $100K ARR in first year; achieved up to 70% MoM customer growth during the early scaling phase.",
+		"logo": "/assets/images/experiences/vectrro.png"
 	},
 	{
-		"dates": "July 2015 · June 2018",
-		"role": "Front-end Engineer",
-		"company": "YOHO!",
-		"description": "Responsible for mobile front-end development of e-commerce platform.",
-		"logo": "/assets/images/experiences/yoho.ico"
+		"dates": "September 2022 · July 2024",
+		"role": "Lead Customer Growth Analyst",
+		"company": "SimplePractice",
+		"description": "Spearheaded analytical efforts in the launch of a new product feature adopted by 200K+ customers, developed AI prototypes, and democratized data accessibility for 320+ team members via cost-effective, open-source software.",
+		"logo": "/assets/images/experiences/simplepractice.svg"
 	},
 	{
-		"dates": "September 2014 · July 2015 ",
-		"role": "Node.JS Developer",
-		"company": "WuLian",
-		"description": "Intern, involved in the development of Internet of Things cloud systems.",
-		"logo": "/assets/images/experiences/wulian.ico"
+		"dates": "November 2021 · September 2022",
+		"role": "Data Science Manager",
+		"company": "Coco Delivery",
+		"description": "Scaled a full-fledged, centralized Data team from scratch; planned, executed and socialized data roadmap with business leads; evangelized data-driven culture across the organization.",
+		"logo": "/assets/images/experiences/coco.png"
+	},
+	{
+		"dates": "July 2021 · November 2021",
+		"role": "Business Intelligence Engineer",
+		"company": "Amazon",
+		"description": "Delivered robust, scalable, and extensible data products to help increase the coverage of digital video catalog for millions of customers worldwide.",
+		"logo": "/assets/images/experiences/amazon.png"
+	},
+	{
+		"dates": "January 2020 · July 2021",
+		"role": "Data Analyst, Tech Lead",
+		"company": "Playboy Enterprises",
+		"description": "Served as the Tech Lead in the Data organization. Shaped the roadmap for the Data org, and led multiple initiatives that resulted in incremental revenue gain, operational excellence, and infrastructure revamp.",
+		"logo": "/assets/images/experiences/playboy.png"
+	},
+	{
+		"dates": "January 2019 · December 2019",
+		"role": "Data Analyst",
+		"company": "Bird Rides",
+		"description": "Advanced development of product features in the product roadmap by means of data analytics and experiments, built data products (ETL scripts, dashboards, reports and analysis write-ups) for stakeholders and promoted data-centric culture through effective communication.",
+		"logo": "/assets/images/experiences/bird.png"
+	},
+	{
+		"dates": "July 2017 · December 2018",
+		"role": "Data Scientist",
+		"company": "Trimark Associates",
+		"description": "Created values for customers through applications of machine learning and data analytics.",
+		"logo": "/assets/images/experiences/trimark.png"
 	}
 ]

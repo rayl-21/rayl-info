@@ -1,58 +1,36 @@
 ---
 import experiences from "../collections/experiences.json";
-import AboutExperience from "../components/about-experience.astro";
+import EntrepreneurialJourney from "../components/entrepreneurial-journey.astro";
 import PageHeading from "../components/page-heading.astro";
 import Layout from "../layouts/main.astro";
 ---
 
 <Layout title="About Me">
-  <section class="relative z-20 max-w-2xl mx-auto my-12 px-7 lg:px-0">
+  <section class="relative z-20 max-w-4xl mx-auto my-12 px-7 lg:px-0">
     <PageHeading
       title="About Me"
-      description="Hello 👋 I'm a frontend engineer from Nanjing, China. I'm passionate about building new products and learning new technology."
+      description="Hello 👋 I'm an entrepreneur building the future with AI. From scaling data teams to founding Vectrro, I turn complex problems into automated solutions that drive real business impact."
     />
 
     <img src="/assets/images/about.jpg" class="relative z-30 w-full my-10 rounded-xl" />
 
-    <h2 class="mb-2 text-2xl font-bold dark:text-neutral-200">Short Bio</h2>
-    <p
-      class="text-sm leading-6 text-gray-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base lg:text-lg"
-    >
-      Front-end cutter 🧑🏻‍💻, back-end amateur 🤷🏻‍♂️, operations digging holes person 🤦🏻‍♂️.
-    </p>
 
     <h2
-      class="mt-5 mb-2 text-2xl font-bold lg:mt-10 sm:mt-6 dark:text-neutral-200"
+      class="mt-5 mb-8 text-3xl font-bold lg:mt-10 sm:mt-6 text-neutral-900 dark:text-neutral-100"
     >
-      Experience
+      My Entrepreneurial Journey
     </h2>
-    <div class="px-5 py-10">
-      {
-        experiences.map((experience) => {
-          return (
-            <div class="pb-10 border-l border-gray-200 last:border-l-0 dark:border-neutral-700">
-              <AboutExperience
-                dates={experience.dates}
-                role={experience.role}
-                company={experience.company}
-                description={experience.description}
-                logo={experience.logo}
-              />
-            </div>
-          )
-        })
-      }
-    </div>
+    <EntrepreneurialJourney experiences={experiences} />
 
-    <h2 class="mt-5 mb-2 text-2xl font-bold lg:mt-10 sm:mt-6 dark:text-neutral-200">Let's Connect</h2>
+    <h2 class="mt-5 mb-2 text-2xl font-bold lg:mt-10 sm:mt-6 text-neutral-900 dark:text-neutral-100">Let's Connect</h2>
     <p
       class="text-sm leading-6 text-gray-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base lg:text-lg"
     >
       If you want to stay up to date with my work be sure to <a
-        href="https://x.com/0xKaibi"
+        href="https://www.linkedin.com/in/ray-li-4b0a9293"
         target="_blank"
-        class="text-indigo-600 underline">follow me on twitter</a
-      >, or you can send me an <a href="mailto:astro-aria#miantiao.me" class="text-indigo-600 underline"
+        class="text-indigo-600 underline">connect me on LinkedIn</a
+      >, or you can send me an <a href="mailto:m519160201@gmail.com" class="text-indigo-600 underline"
         >email</a
       > and I'll be sure to get back to you.
     </p>

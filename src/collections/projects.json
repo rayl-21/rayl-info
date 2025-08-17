@@ -3,36 +3,54 @@
 		"name": "TempMail.Best",
 		"description": "Best Temporary Email.",
 		"image": "/assets/images/projects/tempmail.best.png",
-		"url": "https://tempmail.best"
+		"url": "https://tempmail.best",
+		"story": "Started as a weekend project to solve the annoying problem of email verification spam. What began as a simple disposable email service evolved into a robust platform serving thousands of users daily. The challenge was building a system that's both secure and user-friendly.",
+		"tech": ["Node.js", "Redis", "React", "Cloudflare Workers"],
+		"impact": "Processing over 50,000 temporary emails monthly, helping users maintain privacy while testing services and avoiding spam."
 	},
 	{
 		"name": "DNS.Surf",
 		"description": "Querying DNS Resolution Results in Different Regions Worldwide.",
 		"image": "/assets/images/projects/dns.surf.png",
-		"url": "https://dns.surf"
+		"url": "https://dns.surf",
+		"story": "Born from frustration with debugging DNS propagation issues across different geographical regions. This tool became essential for developers and system administrators who need to verify DNS changes globally before going live.",
+		"tech": ["Go", "DNS APIs", "Geolocation", "Real-time Updates"],
+		"impact": "Used by developers worldwide for DNS debugging, saving countless hours of troubleshooting and preventing production issues."
 	},
 	{
 		"name": "HTML.ZONE",
 		"description": "Web Toolbox.",
 		"image": "/assets/images/projects/html.zone.png",
-		"url": "https://html.zone"
+		"url": "https://html.zone",
+		"story": "Every developer needs quick access to web utilities. Instead of bookmarking dozens of different tools, I created a unified toolbox that brings together the most essential web development utilities in one clean, fast interface.",
+		"tech": ["Vue.js", "Vite", "Web APIs", "PWA"],
+		"impact": "Streamlined workflow for hundreds of developers with tools for encoding, formatting, and quick calculations all in one place."
 	},
 	{
 		"name": "Sink",
 		"description": "A Simple / Speedy / Secure Link Shortener with Analytics.",
 		"image": "/assets/images/projects/sink.cool.png",
-		"url": "https://sink.cool"
+		"url": "https://sink.cool",
+		"story": "Privacy-focused alternative to mainstream link shorteners. Built with the philosophy that analytics shouldn't come at the cost of user privacy. Features real-time analytics without tracking personal information.",
+		"tech": ["Cloudflare Workers", "D1 Database", "Analytics API", "Security Headers"],
+		"impact": "Shortened over 100,000 links while maintaining user privacy, proving that analytics and privacy can coexist."
 	},
 	{
 		"name": "BroadcastChannel",
 		"description": "Turn your Telegram Channel into a MicroBlog.",
 		"image": "/assets/images/projects/broadcast-channel.png",
-		"url": "https://github.com/ccbikai/BroadcastChannel"
+		"url": "https://github.com/ccbikai/BroadcastChannel",
+		"story": "Created to bridge the gap between Telegram's excellent content creation experience and the web's accessibility. This project transforms private Telegram channels into beautiful, public microblogs that anyone can read.",
+		"tech": ["Telegram Bot API", "Next.js", "Server-Side Rendering", "RSS"],
+		"impact": "Helping content creators reach wider audiences by making their Telegram content accessible on the web with zero additional effort."
 	},
 	{
 		"name": "L(O*62).ONG",
 		"description": "Make your URL looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooonger",
 		"image": "/assets/images/projects/long.png",
-		"url": "https://loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo.ong"
+		"url": "https://loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo.ong",
+		"story": "A playful counterpoint to URL shorteners. Sometimes you want your URLs to be ridiculously long for comedic effect or to make a statement. This project celebrates the absurd while being technically sound.",
+		"tech": ["Domain Hacking", "Redirect Logic", "Humor Engineering"],
+		"impact": "Brought joy to thousands of users and became a viral example of creative domain usage and unconventional web projects."
 	}
 ]

@@ -1,0 +1,132 @@
+---
+const { experiences } = Astro.props;
+
+const entrepreneurialStory = [
+  {
+    phase: "Building the Future",
+    period: "2024 - Present",
+    story: "Founded Vectrro to revolutionize trucking operations with AI agents. Scaled from idea to $100K ARR in first year with 70% month-over-month growth.",
+    company: "Vectrro",
+    logo: "/assets/images/experiences/vectrro.png",
+    highlight: "Founder & CEO",
+    metrics: ["$100K ARR", "70% MoM Growth", "AI Automation"]
+  },
+  {
+    phase: "Scaling Products",
+    period: "2022 - 2024",
+    story: "Led product analytics for 200K+ users at SimplePractice. Built AI prototypes and democratized data access across 320+ team members.",
+    company: "SimplePractice", 
+    logo: "/assets/images/experiences/simplepractice.svg",
+    highlight: "Lead Growth Analyst",
+    metrics: ["200K+ Users", "AI Prototypes", "Data Democratization"]
+  },
+  {
+    phase: "Building Teams",
+    period: "2021 - 2022", 
+    story: "Scaled Coco Delivery's data organization from scratch. Built the entire data infrastructure and evangelized data-driven culture.",
+    company: "Coco Delivery",
+    logo: "/assets/images/experiences/coco.png", 
+    highlight: "Data Science Manager",
+    metrics: ["Team from 0", "Data Infrastructure", "Culture Change"]
+  },
+  {
+    phase: "Enterprise Scale",
+    period: "2020 - 2021",
+    story: "Delivered scalable data solutions at Amazon and Playboy. Led tech initiatives driving millions in revenue and operational excellence.",
+    companies: ["Amazon", "Playboy Enterprises"],
+    logos: ["/assets/images/experiences/amazon.png", "/assets/images/experiences/playboy.png"],
+    highlight: "BI Engineer & Tech Lead", 
+    metrics: ["Millions of Users", "Revenue Impact", "Tech Leadership"]
+  }
+];
+---
+
+<div class="space-y-8">
+  {entrepreneurialStory.map((chapter, index) => (
+    <div class="relative group">
+      <!-- Timeline connector -->
+      {index < entrepreneurialStory.length - 1 && (
+        <div class="absolute left-6 top-20 w-0.5 h-16 bg-neutral-300 dark:bg-neutral-600"></div>
+      )}
+      
+      <!-- Main content card with dashed border effect like project cards -->
+      <div class="relative flex flex-col duration-300 ease-out p-7 group h-auto rounded-2xl">
+        <span class="absolute inset-0 z-20 block w-full h-full duration-300 ease-out bg-transparent border border-transparent border-dashed group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:border group-hover:border-neutral-300 dark:group-hover:border-neutral-600 group-hover:border-dashed rounded-2xl group-hover:bg-white dark:group-hover:bg-neutral-950"></span>
+        <span class="absolute inset-0 z-10 block w-full h-full duration-300 ease-out border border-dashed rounded-2xl border-neutral-300 dark:border-neutral-600 group-hover:translate-x-1 group-hover:translate-y-1"></span>
+        
+        <div class="relative z-30 duration-300 ease-out group-hover:-translate-x-1 group-hover:-translate-y-1">
+          <div class="flex gap-6">
+            <!-- Phase indicator -->
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 rounded-full bg-neutral-900 dark:bg-white flex items-center justify-center text-white dark:text-neutral-900 font-bold text-sm">
+                {index + 1}
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 min-w-0">
+              <!-- Header -->
+              <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-1">
+                    {chapter.phase}
+                  </h3>
+                  <div class="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400 font-medium">
+                    <span>{chapter.period}</span>
+                    <span>•</span>
+                    <span>{chapter.highlight}</span>
+                  </div>
+                </div>
+                
+                <!-- Company logos -->
+                <div class="flex gap-2">
+                  {chapter.logo && (
+                    <div class="w-10 h-10 rounded-lg bg-white dark:bg-neutral-800 p-2 border border-neutral-300 dark:border-neutral-600">
+                      <img src={chapter.logo} alt={chapter.company} class="w-full h-full object-contain" />
+                    </div>
+                  )}
+                  {chapter.logos && chapter.logos.map((logo, i) => (
+                    <div class="w-10 h-10 rounded-lg bg-white dark:bg-neutral-800 p-2 border border-neutral-300 dark:border-neutral-600">
+                      <img src={logo} alt={chapter.companies[i]} class="w-full h-full object-contain" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Story -->
+              <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
+                {chapter.story}
+              </p>
+
+              <!-- Metrics -->
+              <div class="flex flex-wrap gap-2">
+                {chapter.metrics.map((metric) => (
+                  <span class="px-3 py-1 text-xs font-semibold bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-full border border-neutral-300 dark:border-neutral-600">
+                    {metric}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<!-- Journey summary -->
+<div class="mt-12 relative group">
+  <div class="relative flex flex-col duration-300 ease-out p-8 group h-auto rounded-2xl">
+    <span class="absolute inset-0 z-20 block w-full h-full duration-300 ease-out bg-transparent border border-transparent border-dashed group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:border group-hover:border-neutral-300 dark:group-hover:border-neutral-600 group-hover:border-dashed rounded-2xl group-hover:bg-white dark:group-hover:bg-neutral-950"></span>
+    <span class="absolute inset-0 z-10 block w-full h-full duration-300 ease-out border border-dashed rounded-2xl border-neutral-300 dark:border-neutral-600 group-hover:translate-x-1 group-hover:translate-y-1"></span>
+    
+    <div class="relative z-30 duration-300 ease-out group-hover:-translate-x-1 group-hover:-translate-y-1 text-center">
+      <h3 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
+        The Journey Continues
+      </h3>
+      <p class="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+        From analyzing data to building AI agents that transform industries. Each chapter has been about solving real problems, scaling solutions, and empowering teams to achieve more than they thought possible.
+      </p>
+    </div>
+  </div>
+</div>

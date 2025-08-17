@@ -1,37 +1,130 @@
 ---
 import projects from "../../collections/projects.json";
 import Button from "../button.astro";
-import Project from "../project.astro";
+import MagicAdventure from "../magic-adventure.astro";
 ---
 
-<section class="max-w-4xl mx-auto px-7 lg:px-0">
-  <h2
-    class="text-2xl font-bold leading-10 tracking-tight text-neutral-900 dark:text-neutral-100"
-  >
-    My Projects
-  </h2>
-  <p class="mb-6 text-base text-neutral-600 dark:text-neutral-400">
-    Here are some of my recent projects. I'm always working on something new, so
-    check back often!
-  </p>
-  <div
-    class="grid items-stretch w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 mt-7"
-  >
-    {
-      projects.map((project) => {
-        return (
-          <Project
-            name={project.name}
-            description={project.description}
-            image={project.image}
-            url={project.url}
-          />
-        )
-      })
-    }
+<section class="max-w-7xl mx-auto px-7 lg:px-8 relative overflow-hidden">
+  <!-- Minimal Background Effects -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <!-- Subtle geometric pattern -->
+    <div class="absolute top-20 left-10 w-24 h-24 border border-neutral-200 dark:border-neutral-800 rounded-full opacity-20"></div>
+    <div class="absolute bottom-20 right-10 w-32 h-32 border border-neutral-200 dark:border-neutral-800 rounded-full opacity-10"></div>
   </div>
 
-  <div class="flex items-center justify-center w-full py-5">
-    <Button text="View All My Projects" link="/projects" />
+  <!-- Section Header -->
+  <div class="relative z-10 text-center mb-16">
+    <h2 class="text-2xl font-bold leading-10 tracking-tight text-neutral-900 dark:text-neutral-100 mb-6">
+      Latest Adventures
+    </h2>
+    
+    <p class="text-base text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto leading-relaxed">
+      Journey through my recent creative endeavors and technical explorations. Click on any adventure to dive deeper into the story behind each project.
+    </p>
+  </div>
+
+  <!-- Magic Adventure Grid -->
+  <div 
+    class="relative z-10"
+    x-data="{ activeAdventure: null }"
+  >
+    <!-- Creative Asymmetric Layout for 5 Cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <!-- Featured Large Adventure (Spans 2x2) -->
+      <div class="lg:col-span-2 lg:row-span-2">
+        <MagicAdventure
+          name={projects[0].name}
+          description={projects[0].description}
+          image={projects[0].image}
+          url={projects[0].url}
+          story={projects[0].story}
+          tech={projects[0].tech}
+          impact={projects[0].impact}
+          featured={true}
+        />
+      </div>
+      
+      <!-- Top Right Cards -->
+      <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <MagicAdventure
+          name={projects[1].name}
+          description={projects[1].description}
+          image={projects[1].image}
+          url={projects[1].url}
+          story={projects[1].story}
+          tech={projects[1].tech}
+          impact={projects[1].impact}
+        />
+        <MagicAdventure
+          name={projects[2].name}
+          description={projects[2].description}
+          image={projects[2].image}
+          url={projects[2].url}
+          story={projects[2].story}
+          tech={projects[2].tech}
+          impact={projects[2].impact}
+        />
+      </div>
+      
+      <!-- Bottom Right Cards -->
+      <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <MagicAdventure
+          name={projects[3].name}
+          description={projects[3].description}
+          image={projects[3].image}
+          url={projects[3].url}
+          story={projects[3].story}
+          tech={projects[3].tech}
+          impact={projects[3].impact}
+        />
+        <MagicAdventure
+          name={projects[4].name}
+          description={projects[4].description}
+          image={projects[4].image}
+          url={projects[4].url}
+          story={projects[4].story}
+          tech={projects[4].tech}
+          impact={projects[4].impact}
+        />
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Call to Action -->
+  <div class="relative z-10 flex items-center justify-center w-full mt-16 mb-8">
+    <Button text="View All My Adventures" link="/projects" />
   </div>
 </section>
+
+<style>
+  /* Floating animation for cards */
+  @keyframes magicFloat {
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% { 
+      transform: translateY(-10px) rotate(1deg);
+    }
+  }
+
+  /* Enhanced particle effects */
+  .magic-adventure-card {
+    animation: magicFloat 8s ease-in-out infinite;
+  }
+
+  .magic-adventure-card:nth-child(odd) {
+    animation-delay: -2s;
+  }
+
+  .magic-adventure-card:nth-child(even) {
+    animation-delay: -4s;
+  }
+
+  /* Responsive grid adjustments */
+  @media (max-width: 1024px) {
+    .magic-adventure-card {
+      animation: none;
+    }
+  }
+</style>

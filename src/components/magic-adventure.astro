@@ -1,0 +1,224 @@
+---
+const { name, description, url, image, story, tech, impact, featured = false } = Astro.props;
+const cardId = `magic-adventure-${name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
+---
+
+<div 
+  class={`magic-adventure-card relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105 ${
+    featured ? 'lg:col-span-2 lg:row-span-2' : ''
+  }`}
+  x-data="{ expanded: false, isHovered: false }"
+  @mouseenter="isHovered = true"
+  @mouseleave="isHovered = false"
+>
+  <!-- Magic Card with Spotlight Effect -->
+  <div class="magic-card-wrapper relative h-full">
+    <!-- Minimal Border Animation -->
+    <div class="absolute inset-0 rounded-2xl overflow-hidden">
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-neutral-900/10 via-neutral-600/10 to-neutral-900/10 dark:from-neutral-100/10 dark:via-neutral-400/10 dark:to-neutral-100/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        :class="isHovered ? 'animate-pulse' : ''"
+      ></div>
+    </div>
+
+    <!-- Main Card Content -->
+    <div 
+      class={`relative h-full bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden shadow-lg transition-all duration-300 ${
+        featured ? 'flex flex-col' : ''
+      }`}
+      :class="isHovered ? 'shadow-2xl shadow-neutral-500/10 dark:shadow-neutral-400/10' : ''"
+    >
+      <!-- Minimal Background Lines -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none" x-show="isHovered">
+        <!-- Subtle animated lines -->
+        <div class="absolute -top-2 left-1/4 w-px h-8 bg-gradient-to-b from-transparent via-neutral-400 dark:via-neutral-600 to-transparent animate-pulse opacity-30"></div>
+        <div class="absolute -top-2 right-1/3 w-px h-6 bg-gradient-to-b from-transparent via-neutral-400 dark:via-neutral-600 to-transparent animate-pulse opacity-20" style="animation-delay: 0.5s;"></div>
+        <div class="absolute -top-2 left-2/3 w-px h-10 bg-gradient-to-b from-transparent via-neutral-400 dark:via-neutral-600 to-transparent animate-pulse opacity-25" style="animation-delay: 1s;"></div>
+      </div>
+
+      <!-- Image Section -->
+      <div class="relative overflow-hidden">
+        <img 
+          src={image} 
+          alt={name}
+          class={`w-full object-cover transition-transform duration-500 ${
+            featured ? 'h-48 lg:h-64' : 'h-32 lg:h-40'
+          }`}
+          :class="isHovered ? 'scale-110' : 'scale-100'"
+        />
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+        
+        <!-- Floating Action Buttons -->
+        <div class="absolute top-4 right-4 flex space-x-2">
+          <a 
+            href={url} 
+            target="_blank"
+            class="p-2 bg-black/20 backdrop-blur-sm rounded-full text-white hover:bg-black/40 transition-all duration-200 transform hover:scale-110"
+            @click.stop
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+          </a>
+          <button 
+            @click="expanded = !expanded"
+            class="p-2 bg-black/20 backdrop-blur-sm rounded-full text-white hover:bg-black/40 transition-all duration-200 transform hover:scale-110"
+            :class="expanded ? 'bg-neutral-700/80 dark:bg-neutral-300/80' : ''"
+          >
+            <svg 
+              class="w-4 h-4 transition-transform duration-300" 
+              :class="expanded ? 'rotate-180' : ''"
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Content Section -->
+      <div class={`p-4 ${featured ? 'lg:p-6 flex flex-col justify-between flex-1' : ''}`}>
+        <div>
+          <div class="flex items-start justify-between mb-2">
+            <h3 class={`font-bold text-neutral-900 dark:text-neutral-100 ${
+              featured ? 'text-xl lg:text-2xl' : 'text-lg'
+            }`}>
+              {name}
+            </h3>
+          </div>
+          
+          <p class={`text-neutral-600 dark:text-neutral-400 ${
+            featured ? 'text-base mb-6' : 'text-sm mb-4'
+          }`}>
+            {description}
+          </p>
+
+          {/* Additional story preview for featured cards */}
+          {featured && story && (
+            <p class={`text-neutral-500 dark:text-neutral-500 text-sm leading-relaxed mb-6 line-clamp-3`}>
+              {story.slice(0, 150)}...
+            </p>
+          )}
+        </div>
+
+        <!-- Tech Stack Preview -->
+        {tech && tech.length > 0 && (
+          <div class={`flex flex-wrap gap-1 ${featured ? 'mb-4' : 'mb-3'}`}>
+            {tech.slice(0, featured ? 4 : 3).map((technology) => (
+              <span class={`px-2 py-1 text-xs bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-full border border-neutral-200 dark:border-neutral-700 ${
+                featured ? 'px-3 py-1.5' : ''
+              }`}>
+                {technology}
+              </span>
+            ))}
+            {tech.length > (featured ? 4 : 3) && (
+              <span class={`px-2 py-1 text-xs bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 rounded-full ${
+                featured ? 'px-3 py-1.5' : ''
+              }`}>
+                +{tech.length - (featured ? 4 : 3)}
+              </span>
+            )}
+          </div>
+        )}
+      </div>
+
+      <!-- Expanded Content -->
+      <div 
+        x-show="expanded" 
+        x-collapse
+        class="px-4 pb-6 space-y-4 border-t border-neutral-200 dark:border-neutral-800"
+      >
+        <!-- Story Section -->
+        {story && (
+          <div class="pt-4">
+            <h4 class="text-base font-semibold text-neutral-900 dark:text-neutral-100 mb-2 flex items-center">
+              <div class="w-2 h-2 bg-neutral-600 dark:bg-neutral-400 rounded-full mr-2"></div>
+              The Adventure
+            </h4>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              {story}
+            </p>
+          </div>
+        )}
+
+        <!-- Full Tech Stack -->
+        {tech && tech.length > 3 && (
+          <div>
+            <h4 class="text-base font-semibold text-neutral-900 dark:text-neutral-100 mb-2 flex items-center">
+              <div class="w-2 h-2 bg-neutral-600 dark:bg-neutral-400 rounded-full mr-2"></div>
+              Tech Arsenal
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              {tech.map((technology) => (
+                <span class="px-3 py-1 text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-full border border-neutral-200 dark:border-neutral-700">
+                  {technology}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Impact Section -->
+        {impact && (
+          <div>
+            <h4 class="text-base font-semibold text-neutral-900 dark:text-neutral-100 mb-2 flex items-center">
+              <div class="w-2 h-2 bg-neutral-600 dark:bg-neutral-400 rounded-full mr-2"></div>
+              Impact & Results
+            </h4>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              {impact}
+            </p>
+          </div>
+        )}
+
+        <!-- Action Button -->
+        <div class="pt-2">
+          <a 
+            href={url} 
+            target="_blank"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium text-white dark:text-neutral-900 bg-neutral-900 dark:bg-neutral-100 rounded-lg hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            Explore This Adventure
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Shine Effect -->
+      <div 
+        class="absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none"
+        :class="isHovered ? 'opacity-100' : ''"
+      >
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-neutral-300/10 dark:via-neutral-600/10 to-transparent -skew-x-12 translate-x-[-100%] animate-pulse"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .magic-adventure-card {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .magic-adventure-card:nth-child(2n) {
+    animation-delay: -2s;
+  }
+
+  .magic-adventure-card:nth-child(3n) {
+    animation-delay: -4s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(0.5deg); }
+  }
+
+  .magic-card-wrapper:hover .magic-adventure-card {
+    animation-play-state: paused;
+  }
+</style>
