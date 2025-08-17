@@ -15,6 +15,12 @@ This is Ray's personal website built with Astro, featuring a portfolio, blog pos
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 
+## Deployment
+- **Platform**: Cloudflare Pages
+- **Build command**: `npm run build`
+- **Output directory**: `dist`
+- **Deploy via**: `wrangler pages deploy dist --project-name rayl-info`
+
 ## Recent Changes
 - Added Magic UI components (border-beam, magic-card, meteors)
 - Updated experience images and data
