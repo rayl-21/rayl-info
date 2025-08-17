@@ -23,72 +23,16 @@ import MagicAdventure from "../magic-adventure.astro";
     </p>
   </div>
 
-  <!-- Magic Adventure Grid -->
+  <!-- Magic Adventure Grid - Empty for now -->
   <div 
     class="relative z-10"
     x-data="{ activeAdventure: null }"
   >
-    <!-- Creative Asymmetric Layout for 5 Cards -->
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-      <!-- Featured Large Adventure (Spans 2x2) -->
-      <div class="lg:col-span-2 lg:row-span-2">
-        <MagicAdventure
-          name={projects[0].name}
-          description={projects[0].description}
-          image={projects[0].image}
-          url={projects[0].url}
-          story={projects[0].story}
-          tech={projects[0].tech}
-          impact={projects[0].impact}
-          featured={true}
-        />
-      </div>
-      
-      <!-- Top Right Cards -->
-      <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <MagicAdventure
-          name={projects[1].name}
-          description={projects[1].description}
-          image={projects[1].image}
-          url={projects[1].url}
-          story={projects[1].story}
-          tech={projects[1].tech}
-          impact={projects[1].impact}
-        />
-        <MagicAdventure
-          name={projects[2].name}
-          description={projects[2].description}
-          image={projects[2].image}
-          url={projects[2].url}
-          story={projects[2].story}
-          tech={projects[2].tech}
-          impact={projects[2].impact}
-        />
-      </div>
-      
-      <!-- Bottom Right Cards -->
-      <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <MagicAdventure
-          name={projects[3].name}
-          description={projects[3].description}
-          image={projects[3].image}
-          url={projects[3].url}
-          story={projects[3].story}
-          tech={projects[3].tech}
-          impact={projects[3].impact}
-        />
-        <MagicAdventure
-          name={projects[4].name}
-          description={projects[4].description}
-          image={projects[4].image}
-          url={projects[4].url}
-          story={projects[4].story}
-          tech={projects[4].tech}
-          impact={projects[4].impact}
-        />
-      </div>
+    <div class="text-center py-16">
+      <p class="text-lg text-neutral-600 dark:text-neutral-400">
+        Coming soon... exciting adventures are being crafted! 
+      </p>
     </div>
-
   </div>
 
   <!-- Call to Action -->
