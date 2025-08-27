@@ -2,7 +2,8 @@
 import Footer from "../components/footer.astro";
 import Header from "../components/header.astro";
 import SquareLines from "../components/square-lines.astro";
-const { title } = Astro.props;
+import SEO from "../components/seo.astro";
+const { title, description, image, canonical } = Astro.props;
 ---
 
 <!doctype html>
@@ -11,6 +12,7 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <SEO title={title} description={description} image={image} canonical={canonical} />
 
     <!-- Used to add dark mode right away, adding here prevents any flicker -->
     <script is:inline>

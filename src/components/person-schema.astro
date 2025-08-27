@@ -1,0 +1,32 @@
+---
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ray Li",
+  "url": "https://rayl.info",
+  "sameAs": [
+    "https://x.com/rayl1259",
+    "https://github.com/rayl-21",
+    "https://www.linkedin.com/in/ray-li-4b0a9293/"
+  ],
+  "jobTitle": "Entrepreneur & AI Founder",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Vectrro"
+  },
+  "alumniOf": [
+    {
+      "@type": "Organization",
+      "name": "Amazon"
+    },
+    {
+      "@type": "Organization", 
+      "name": "SimplePractice"
+    }
+  ],
+  "knowsAbout": ["Artificial Intelligence", "Software Engineering", "Entrepreneurship", "Data Science"],
+  "description": "Entrepreneur and AI founder building innovative solutions. From data scientist at Amazon to founder of Vectrro."
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

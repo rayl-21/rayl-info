@@ -1,0 +1,34 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  datePublished: string;
+  url: string;
+}
+
+const { title, description, datePublished, url } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "datePublished": datePublished,
+  "author": {
+    "@type": "Person",
+    "name": "Ray Li",
+    "url": "https://rayl.info/about"
+  },
+  "publisher": {
+    "@type": "Person", 
+    "name": "Ray Li"
+  },
+  "url": url,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": url
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,9 +1,33 @@
 ---
 import Layout from "./main.astro";
+import BlogSchema from "../components/blog-schema.astro";
 const { frontmatter } = Astro.props;
+
+// Generate ISO date for article:published_time
+const dateMatch = frontmatter.dateFormatted?.match(/(\w+)\s+(\d+)\w*,\s+(\d{4})/);
+let publishedTime;
+if (dateMatch) {
+  const [_, month, day, year] = dateMatch;
+  publishedTime = new Date(`${month} ${day}, ${year}`).toISOString();
+}
+
+const postSlug = Astro.url.pathname.split('/').pop();
+const postUrl = `https://rayl.info/post/${postSlug}`;
 ---
 
-<Layout title={frontmatter.title}>
+<Layout 
+  title={`${frontmatter.title} | Ray Li`}
+  description={frontmatter.description}
+  canonical={postUrl}
+>
+  {publishedTime && (
+    <BlogSchema 
+      title={frontmatter.title}
+      description={frontmatter.description}
+      datePublished={publishedTime}
+      url={postUrl}
+    />
+  )}
   <main
     class="relative z-30 max-w-4xl pb-1 mx-auto mt-10 bg-white dark:bg-neutral-950 md:rounded-t-md text-neutral-900"
   >
