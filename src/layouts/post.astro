@@ -11,8 +11,10 @@ if (dateMatch) {
   publishedTime = new Date(`${month} ${day}, ${year}`).toISOString();
 }
 
-const postSlug = Astro.url.pathname.split('/').pop();
-const postUrl = `https://rayl.info/post/${postSlug}`;
+// Extract the slug from the pathname - handle trailing slashes
+const pathParts = Astro.url.pathname.split('/').filter(part => part);
+const postSlug = pathParts[pathParts.length - 1] || '';
+const postUrl = postSlug ? `https://rayl.info/post/${postSlug}/` : 'https://rayl.info/';
 ---
 
 <Layout 
