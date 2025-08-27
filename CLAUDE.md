@@ -1,19 +1,24 @@
 # Ray's Personal Website - Claude Context
 
 ## Project Overview
-This is Ray's personal website built with Astro, featuring a portfolio, blog posts, and professional experiences.
+Ray's personal website built with Astro, showcasing his entrepreneurial journey from data scientist to AI founder. Features a technical blog, project portfolio, and interactive timeline of professional experiences at companies like Amazon, SimplePractice, and Vectrro (his current venture).
 
 ## Key Files & Structure
-- `src/pages/` - Main pages (index, about, posts, projects)
+- `src/pages/` - Main pages (index, about, posts, projects) 
 - `src/components/` - Reusable Astro components
-- `src/content/post/` - Blog posts in Markdown
+  - `ui/` - React-based Magic UI components (border-beam, magic-card, meteors)
+  - `home/` - Homepage sections (projects, writings, separator)
+  - `magic-adventure.astro` - Expandable project cards with Alpine.js
+  - `entrepreneurial-journey.astro` - Timeline component showcasing career progression
+- `src/content/post/` - 22 technical blog posts in Markdown
 - `src/collections/` - JSON data for experiences, projects, menu
-- `public/assets/images/` - Static images
+- `public/assets/images/` - Static images including company logos and Ray's avatar
 
 ## Development Commands
 - `npm run dev` - Start development server
-- `npm run build` - Build for production
+- `npm run build` - Build for production (includes astro check)
 - `npm run preview` - Preview production build
+- `npm run check` - Run Biome linter with auto-fix
 
 ## Deployment
 - **Platform**: Cloudflare Pages
@@ -21,17 +26,45 @@ This is Ray's personal website built with Astro, featuring a portfolio, blog pos
 - **Output directory**: `dist`
 - **Deploy via**: `wrangler pages deploy dist --project-name rayl-info`
 
-## Recent Changes
-- Added Magic UI components (border-beam, magic-card, meteors)
-- Updated experience images and data
-- Enhanced UI with new adventure and entrepreneurial journey components
-- Added Ray's 3D avatar image
+## Recent Changes & Current State
+- Added Magic UI components (border-beam, magic-card, meteors) with React integration
+- Enhanced UI with adventure and entrepreneurial journey components using Alpine.js
+- Implemented expandable cards with animations and spotlight effects
+- Added comprehensive blog with 22 technical posts covering cloud, DevOps, and AI topics
+- Integrated entrepreneurial narrative showcasing journey from data scientist to founder
+- Added LinkedIn integration alongside Twitter/X social links
+- Enhanced project cards with dashed border hover effects
 
 ## Tech Stack
-- Astro
-- TypeScript
-- Tailwind CSS
-- Magic UI components
+- **Framework**: Astro 4.8.2
+- **Language**: TypeScript 5.4.5
+- **Styling**: Tailwind CSS 3.4.3 with Typography plugin
+- **UI Components**: Magic UI (React-based animated components)
+- **Interactivity**: Alpine.js (via x-data directives)
+- **Animation**: Framer Motion 12.23
+- **Build Tools**: Biome for linting, pnpm for package management
+- **Deployment**: Cloudflare Pages via Wrangler
+
+## Architecture & Code Quality Assessment
+
+### Good Taste Elements ✅
+- Clean component separation with Astro for static content and React for interactive UI
+- Minimal dependencies - only essential packages included
+- Simple data structure using JSON collections instead of complex database
+- No special-case handling in component logic - uses consistent patterns
+
+### Areas Following Linus Principles
+- **Data Structure First**: Simple JSON files for data, no unnecessary abstractions
+- **No Over-Engineering**: Direct file structure, no complex build pipelines
+- **Pragmatic Choices**: Alpine.js for simple interactivity instead of full React everywhere
+- **Clean Separation**: Static content (Astro) vs interactive components (React/Alpine)
+
+### Technical Debt & Improvements Needed
+- No TypeScript strict mode enforcement in tsconfig
+- Missing proper error boundaries for React components
+- No automated testing infrastructure
+- Could eliminate some animation complexity in magic-adventure component
+- Missing SEO meta tags and OpenGraph configuration
 
 ## Instructions for Claude
 
@@ -179,10 +212,101 @@ When seeing code, immediately make three-layer judgment:
 
 ### Tool Usage
 
-**Documentation Tools**
-1. **View Official Documentation**
-   - `resolve-library-id` - Resolve library name to Context7 ID
-   - `get-library-docs` - Get latest official documentation
+**MCP Server Tools - Use These First!**
+
+#### 1. **Serena MCP Server** - Code Analysis & Symbolic Editing
+**Primary Use**: Efficient code exploration, analysis, and precise symbolic editing without reading entire files.
+
+**Key Tools**:
+- `mcp__serena__get_symbols_overview` - Get high-level understanding of code symbols in a file
+- `mcp__serena__find_symbol` - Find specific classes, methods, functions by name path
+- `mcp__serena__find_referencing_symbols` - Find all references to a symbol
+- `mcp__serena__search_for_pattern` - Flexible pattern search across codebase
+- `mcp__serena__replace_symbol_body` - Replace entire symbol bodies precisely
+- `mcp__serena__insert_before_symbol` / `insert_after_symbol` - Insert code at specific locations
+- `mcp__serena__list_dir` / `find_file` - Navigate project structure
+- `mcp__serena__write_memory` / `read_memory` - Store/retrieve project context
+
+**Example Scenarios**:
+```
+# Scenario 1: Adding a new method to a class
+1. Use find_symbol("HomePage", relative_path="src/pages/index.astro") to locate class
+2. Use insert_after_symbol to add method after existing methods
+3. Use find_referencing_symbols to update all usages
+
+# Scenario 2: Refactoring a function
+1. Use get_symbols_overview("src/utils/helpers.ts") to understand file structure
+2. Use find_symbol with include_body=true to read specific function
+3. Use replace_symbol_body to update implementation
+4. Use find_referencing_symbols to ensure compatibility
+
+# Scenario 3: Understanding codebase architecture
+1. Use list_dir(".") to explore structure
+2. Use search_for_pattern to find specific patterns/imports
+3. Write findings to memory for future reference
+```
+
+#### 2. **Context7 MCP Server** - Documentation Retrieval
+**Primary Use**: Get up-to-date official documentation for any library or framework.
+
+**Key Tools**:
+- `mcp__context7__resolve-library-id` - Convert package name to Context7 ID
+- `mcp__context7__get-library-docs` - Fetch official documentation
+
+**Example Scenarios**:
+```
+# Scenario 1: Learning Astro API
+1. Use resolve-library-id("astro") to get Astro's Context7 ID
+2. Use get-library-docs with topic="components" for component docs
+
+# Scenario 2: Understanding Tailwind CSS utilities
+1. Use resolve-library-id("tailwindcss")
+2. Use get-library-docs with topic="utilities" for utility classes
+
+# Scenario 3: React hooks documentation
+1. Use resolve-library-id("react")
+2. Use get-library-docs with topic="hooks" for hooks reference
+```
+
+#### 3. **Playwright MCP Server** - Browser Automation & Testing
+**Primary Use**: Automated browser testing, UI interaction, visual regression testing.
+
+**Key Tools**:
+- `mcp__playwright__browser_navigate` - Navigate to URLs
+- `mcp__playwright__browser_snapshot` - Capture page accessibility tree
+- `mcp__playwright__browser_take_screenshot` - Take screenshots for visual testing
+- `mcp__playwright__browser_click` / `browser_type` - Interact with elements
+- `mcp__playwright__browser_fill_form` - Fill multiple form fields
+- `mcp__playwright__browser_evaluate` - Execute JavaScript in browser
+- `mcp__playwright__browser_console_messages` - Read console output
+- `mcp__playwright__browser_network_requests` - Monitor network activity
+
+**Example Scenarios**:
+```
+# Scenario 1: Testing homepage responsiveness
+1. Use browser_navigate("http://localhost:4321")
+2. Use browser_resize for different viewport sizes
+3. Use browser_take_screenshot for each size
+4. Use browser_snapshot to verify accessibility
+
+# Scenario 2: Testing interactive components
+1. Navigate to page with Magic UI components
+2. Use browser_click on expandable cards
+3. Use browser_evaluate to check animation states
+4. Use browser_console_messages to catch errors
+
+# Scenario 3: Form submission testing
+1. Navigate to contact form
+2. Use browser_fill_form with test data
+3. Use browser_click to submit
+4. Use browser_network_requests to verify API calls
+```
+
+**Tool Selection Guidelines**:
+1. **For code exploration**: Always use Serena's symbolic tools instead of Read/Edit
+2. **For documentation**: Always check Context7 before web searches
+3. **For UI testing**: Use Playwright instead of manual verification
+4. **For efficiency**: Use MCP tools in parallel when possible
 
 **Project-Specific Guidelines**
 When working on this Astro project:
@@ -192,3 +316,6 @@ When working on this Astro project:
 - Maintain consistent styling with Tailwind CSS
 - Test changes locally before suggesting commits
 - Apply Linus's principles: eliminate special cases, simplify data structures, avoid over-engineering
+- **Always prefer Serena's symbolic tools over reading entire files**
+- **Use Context7 for framework documentation instead of guessing APIs**
+- **Use Playwright for automated testing of UI changes**
