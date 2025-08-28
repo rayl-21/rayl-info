@@ -7,10 +7,11 @@ Ray's personal website built with Astro, showcasing his entrepreneurial journey 
 - `src/pages/` - Main pages (index, about, posts, projects) 
 - `src/components/` - Reusable Astro components
   - `ui/` - React-based Magic UI components (border-beam, magic-card, meteors)
-  - `home/` - Homepage sections (projects, writings, separator)
+  - `home/` - Homepage sections (projects, writings, separator, latest-posts)
   - `magic-adventure.astro` - Expandable project cards with Alpine.js
   - `entrepreneurial-journey.astro` - Timeline component showcasing career progression
-- `src/content/post/` - Technical blog post (currently 1 post on drayage truckers)
+  - `posts-loop.astro` - Reusable component for displaying blog posts with count limit
+- `src/content/post/` - Technical blog posts (2 posts on drayage market analysis and trucker fees)
 - `src/collections/` - JSON data for experiences, projects, menu
 - `public/assets/images/` - Static images including company logos, Ray's avatar, and OG image
 
@@ -28,6 +29,9 @@ Ray's personal website built with Astro, showcasing his entrepreneurial journey 
 - **Production URL**: https://rayl.info
 
 ## Recent Changes & Current State
+- Added "Latest Posts" section to homepage displaying 5 most recent blog posts
+- Integrated latest posts with consistent styling using existing PostsLoop component
+- Homepage now features three main content sections: Adventures, Latest Posts, and footer
 - Implemented comprehensive SEO improvements with OpenGraph meta tags
 - Fixed favicon and OpenGraph image configuration for better social sharing
 - Added sitemap generation via @astrojs/sitemap integration
@@ -55,6 +59,8 @@ Ray's personal website built with Astro, showcasing his entrepreneurial journey 
 - Minimal dependencies - only essential packages included
 - Simple data structure using JSON collections instead of complex database
 - No special-case handling in component logic - uses consistent patterns
+- Reusable PostsLoop component with configurable count parameter
+- Consistent UI patterns across homepage sections (Adventures, Latest Posts)
 
 ### Areas Following Linus Principles
 - **Data Structure First**: Simple JSON files for data, no unnecessary abstractions

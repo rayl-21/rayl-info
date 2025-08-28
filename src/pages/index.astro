@@ -2,7 +2,7 @@
 import Button from "../components/button.astro";
 import Projects from "../components/home/projects.astro";
 import Separator from "../components/home/separator.astro";
-import Writings from "../components/home/writings.astro";
+import LatestPosts from "../components/home/latest-posts.astro";
 import Layout from "../layouts/main.astro";
 import PersonSchema from "../components/person-schema.astro";
 ---
@@ -26,7 +26,7 @@ import PersonSchema from "../components/person-schema.astro";
           I'm a data scientist turned entrepreneur who thrives at the intersection of technology and business impact. My journey has taken me from building data products at big tech to founding my own company, where I focus on solving complex problems through frontier AI innovation. I believe the most meaningful work happens when technical expertise meets real-world challenges.
         </p>
         <div class="flex flex-col sm:flex-row gap-3">
-          <Button text="Follow me on 𝕏" link="https://x.com/rayl1259" />
+          <Button text="Follow me on 𝕏" link="https://x.com/rayl1259" newTab={true} />
           <a
             href="https://www.linkedin.com/in/ray-li-4b0a9293/"
             target="_blank"
@@ -75,4 +75,7 @@ import PersonSchema from "../components/person-schema.astro";
 
   <Separator text="Check out my adventures" />
   <Projects />
+  
+  <Separator text="Insights & Ideas" />
+  <LatestPosts />
 </Layout>
