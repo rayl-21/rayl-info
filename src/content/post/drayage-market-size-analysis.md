@@ -9,7 +9,7 @@ Using the latest federal and industry data, drayage (container trucking to/from 
 
 ## What Counts as "Drayage" Here
 
-Short-haul container moves tied to marine terminals (port → warehouse/transload/rail) and rail ramps (ramp ↔ shipper), including the first/last mile around an intermodal rail move. This excludes long-haul truckload and LTL linehaul; the goal is to isolate the container first/last-mile slice. (IANA's framing of the sector is a good shorthand.)
+Short-haul container moves tied to marine terminals (port → warehouse/transload/rail) and rail ramps (ramp ↔ shipper), including the first/last mile around an intermodal rail move. This excludes long-haul truckload and LTL linehaul; the goal is to isolate the container first/last-mile slice.
 
 ## The Numbers
 
