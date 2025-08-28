@@ -10,9 +10,9 @@ Ray's personal website built with Astro, showcasing his entrepreneurial journey 
   - `home/` - Homepage sections (projects, writings, separator)
   - `magic-adventure.astro` - Expandable project cards with Alpine.js
   - `entrepreneurial-journey.astro` - Timeline component showcasing career progression
-- `src/content/post/` - 22 technical blog posts in Markdown
+- `src/content/post/` - Technical blog post (currently 1 post on drayage truckers)
 - `src/collections/` - JSON data for experiences, projects, menu
-- `public/assets/images/` - Static images including company logos and Ray's avatar
+- `public/assets/images/` - Static images including company logos, Ray's avatar, and OG image
 
 ## Development Commands
 - `npm run dev` - Start development server
@@ -25,15 +25,17 @@ Ray's personal website built with Astro, showcasing his entrepreneurial journey 
 - **Build command**: `npm run build`
 - **Output directory**: `dist`
 - **Deploy via**: `wrangler pages deploy dist --project-name rayl-info`
+- **Production URL**: https://rayl.info
 
 ## Recent Changes & Current State
+- Implemented comprehensive SEO improvements with OpenGraph meta tags
+- Fixed favicon and OpenGraph image configuration for better social sharing
+- Added sitemap generation via @astrojs/sitemap integration
+- Completed website redesign with new branding
 - Added Magic UI components (border-beam, magic-card, meteors) with React integration
 - Enhanced UI with adventure and entrepreneurial journey components using Alpine.js
-- Implemented expandable cards with animations and spotlight effects
-- Added comprehensive blog with 22 technical posts covering cloud, DevOps, and AI topics
-- Integrated entrepreneurial narrative showcasing journey from data scientist to founder
-- Added LinkedIn integration alongside Twitter/X social links
-- Enhanced project cards with dashed border hover effects
+- Streamlined blog content to focus on key technical posts
+- Git repository configured and deployed to Cloudflare Pages
 
 ## Tech Stack
 - **Framework**: Astro 4.8.2
@@ -41,9 +43,10 @@ Ray's personal website built with Astro, showcasing his entrepreneurial journey 
 - **Styling**: Tailwind CSS 3.4.3 with Typography plugin
 - **UI Components**: Magic UI (React-based animated components)
 - **Interactivity**: Alpine.js (via x-data directives)
-- **Animation**: Framer Motion 12.23
-- **Build Tools**: Biome for linting, pnpm for package management
+- **Animation**: Framer Motion 12.23.12
+- **Build Tools**: Biome 1.7.3 for linting, pnpm 9.12.2 for package management
 - **Deployment**: Cloudflare Pages via Wrangler
+- **SEO**: @astrojs/sitemap 3.5.1 for sitemap generation
 
 ## Architecture & Code Quality Assessment
 
@@ -64,7 +67,8 @@ Ray's personal website built with Astro, showcasing his entrepreneurial journey 
 - Missing proper error boundaries for React components
 - No automated testing infrastructure
 - Could eliminate some animation complexity in magic-adventure component
-- Missing SEO meta tags and OpenGraph configuration
+- No React integration configured (@astrojs/react not installed) - React components are built but may not render properly
+- Missing path aliases beyond base @/* mapping
 
 ## Instructions for Claude
 
