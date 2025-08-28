@@ -50,9 +50,9 @@ Applying the IANA number to the U.S. trucking revenue gets a ~2.9% share. Becaus
 
 ## What This Means If You're Sizing the Opportunity
 
-- **It's small by dollars, big by velocity.** A **~3% revenue slice** sounds small until you remember these are **short-haul, high-turn** moves where cycle time and appointment discipline make or break margins.
+- **It's small by dollars, big by velocity.** A ~3% revenue slice sounds small until you remember these are short-haul, high-turn moves where cycle time and appointment discipline make or break margins.
 
-- **Tech matters outsized.** Pre-gate apps, slotting, and electronic interchange receipts (EIR/J1) compress dwell, reduce bobtails, and help capture accessorials—key levers when the TAM is thin but the **throughput** is large.
+- **Tech matters outsized.** Pre-gate apps, slotting, and electronic interchange receipts (EIR/J1) compress dwell, reduce bobtails, and help capture accessorials—key levers when the TAM is thin but the throughput is large.
 
 ## Sources
 
