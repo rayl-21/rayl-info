@@ -1,0 +1,40 @@
+---
+layout: ../../layouts/post.astro
+title: Using AI for Operational Intelligence (1/n)
+description: From years of guesswork to data-driven decisions - building the visibility system every drayage carrier needs
+dateFormatted: Sep 8th, 2025
+---
+
+import ImageComparison from '../../components/image-comparison.astro';
+
+### My Motivation
+
+From my time in drayage dispatch, the 7 AM scramble at the Port of Los Angeles is a feeling I know all too well. I’ve been the one making the calls, trying to figure out which terminal gate was moving and which was a parking lot. Sending a driver into that uncertainty was always a gamble. A good turn could mean a profitable day, but a multi-hour wait could blow up the schedule, exhaust a driver’s hours, and delay a critical pickup. That inefficiency and frustration sparked the idea for this project.
+
+Coming from an analytics background—and after one too many dashboards—I knew there had to be a better way than relying on guesswork and fragmented phone calls in an industry that forms the backbone of our supply chain.
+
+The core problem is a massive blind spot: a lack of real-time visibility into terminal gate conditions. This isn’t a small issue. Delays at the LA/Long Beach port complex lead to staggering amounts of wasted time and fuel. That inefficiency directly impacts the bottom line of every drayage carrier, big or small. My motivation is personal; it’s about building the tool I wished I’d had as a dispatcher—a system that replaces hunches with hard data and empowers drayage carriers to make smarter, more profitable decisions.
+
+### Turning Cameras into Operational Intelligence
+
+My approach is to use computer vision to provide the "eyes on the ground" that dispatchers lack. By analyzing video feeds from cameras at terminal gates, the system can deliver the critical metrics needed for intelligent dispatching. This isn't just about counting trucks; it's about understanding traffic flow at each specific gate. The goal is to transform raw visual data into a clear, actionable dashboard that highlights real-time truck counts, calculates average wait times based on entry and exit patterns, and shows how quickly queues are moving.
+
+The power of this computer vision approach becomes clear when you see it in action. Here's a direct comparison of raw camera footage versus the same feed with AI analysis applied:
+
+<ImageComparison
+  beforeImage="/assets/images/posts/apm-in-gate.jpeg"
+  beforeAlt="Normal camera footage showing trucks queued at a terminal gate entrance"
+  beforeCaption="**Before:** Standard security camera view - trucks are visible but no operational insights"
+  afterImage="/assets/images/posts/apm-in-gate-annotated.jpeg"
+  afterAlt="AI-annotated footage with object detection boxes, truck IDs, and wait time overlays"
+  afterCaption="**After:** AI-enhanced view showing truck detection"
+/>
+
+The AI system identifies each vehicle, tracks its position in the queue, and calculates real-time metrics that transform a simple video feed into actionable operational data. Green boxes indicate moving trucks, yellow shows queued vehicles, and the overlay displays current wait time estimates based on historical gate processing speeds.
+
+This technology enables a fundamental shift in how dispatch operates:
+
+*   **Before:** Dispatchers relied on past experience—"TraPac usually gets busy after 8 AM. Let's send two trucks and hope for the best." This often resulted in at least one driver getting stuck in a long queue, wasting hours and fuel.
+*   **With this data:** A dispatcher can see, "APM Terminal has a 90-minute average wait right now, but Pier E is moving quickly with a 20-minute turn time." They can reroute drivers to the more efficient terminal, maximizing turns per day.
+
+This is definitely a fun project for me. I want to show what's possible, as well as practical, with data and AI.

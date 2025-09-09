@@ -1,0 +1,152 @@
+---
+export interface Props {
+  beforeImage: string;
+  beforeAlt: string;
+  beforeCaption: string;
+  afterImage: string;
+  afterAlt: string;
+  afterCaption: string;
+}
+
+const { beforeImage, beforeAlt, beforeCaption, afterImage, afterAlt, afterCaption } = Astro.props;
+---
+
+<div class="image-comparison-container">
+  <div class="image-wrapper">
+    <img 
+      src={beforeImage}
+      alt={beforeAlt}
+      class="comparison-image"
+      data-modal-src={beforeImage}
+    />
+    <p class="image-caption" set:html={beforeCaption.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+  </div>
+  <div class="image-wrapper">
+    <img 
+      src={afterImage}
+      alt={afterAlt}
+      class="comparison-image"
+      data-modal-src={afterImage}
+    />
+    <p class="image-caption" set:html={afterCaption.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+  </div>
+</div>
+
+<div id="imageModal" class="image-modal">
+  <img id="modalImage" src="" alt="Enlarged view" />
+</div>
+
+<style>
+  .image-comparison-container {
+    display: flex;
+    gap: 1.25rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+  }
+
+  .image-wrapper {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .comparison-image {
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+  }
+
+  .comparison-image:hover {
+    transform: scale(1.02);
+  }
+
+  .image-caption {
+    text-align: center;
+    margin-top: 0.625rem;
+    font-style: italic;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .image-caption strong {
+    font-weight: 600;
+  }
+
+  .image-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    cursor: zoom-out;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .image-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 0.5rem;
+    animation: scaleIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scaleIn {
+    from { transform: scale(0.9); }
+    to { transform: scale(1); }
+  }
+
+  @media (max-width: 768px) {
+    .image-comparison-container {
+      gap: 1rem;
+    }
+    
+    .image-wrapper {
+      min-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage') as HTMLImageElement;
+    const images = document.querySelectorAll('.comparison-image');
+
+    images.forEach((img) => {
+      img.addEventListener('click', (e) => {
+        const target = e.target as HTMLImageElement;
+        const src = target.dataset.modalSrc;
+        if (modal && modalImg && src) {
+          modal.classList.add('active');
+          modalImg.src = src;
+        }
+      });
+    });
+
+    if (modal) {
+      modal.addEventListener('click', () => {
+        modal.classList.remove('active');
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal) {
+        modal.classList.remove('active');
+      }
+    });
+  });
+</script>
