@@ -32,7 +32,12 @@
 		"image": "/assets/images/projects/sink.cool.png",
 		"url": "https://sink.cool",
 		"story": "Privacy-focused alternative to mainstream link shorteners. Built with the philosophy that analytics shouldn't come at the cost of user privacy. Features real-time analytics without tracking personal information.",
-		"tech": ["Cloudflare Workers", "D1 Database", "Analytics API", "Security Headers"],
+		"tech": [
+			"Cloudflare Workers",
+			"D1 Database",
+			"Analytics API",
+			"Security Headers"
+		],
 		"impact": "Shortened over 100,000 links while maintaining user privacy, proving that analytics and privacy can coexist."
 	},
 	{

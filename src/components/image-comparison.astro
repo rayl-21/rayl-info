@@ -1,14 +1,21 @@
 ---
 export interface Props {
-  beforeImage: string;
-  beforeAlt: string;
-  beforeCaption: string;
-  afterImage: string;
-  afterAlt: string;
-  afterCaption: string;
+	beforeImage: string;
+	beforeAlt: string;
+	beforeCaption: string;
+	afterImage: string;
+	afterAlt: string;
+	afterCaption: string;
 }
 
-const { beforeImage, beforeAlt, beforeCaption, afterImage, afterAlt, afterCaption } = Astro.props;
+const {
+	beforeImage,
+	beforeAlt,
+	beforeCaption,
+	afterImage,
+	afterAlt,
+	afterCaption,
+} = Astro.props;
 ---
 
 <div class="image-comparison-container">
