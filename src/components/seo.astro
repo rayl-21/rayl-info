@@ -1,23 +1,23 @@
 ---
 export interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
-  canonical?: string;
-  type?: string;
-  publishedTime?: string;
+	title?: string;
+	description?: string;
+	image?: string;
+	canonical?: string;
+	type?: string;
+	publishedTime?: string;
 }
 
 const {
-  title = "Ray Li - Entrepreneur, AI Founder & Software Engineer",
-  description = "Entrepreneur and AI founder building innovative solutions. From data scientist at Amazon to founder of Vectrro, exploring the intersection of AI and business.",
-  image = "/assets/images/og-image.png",
-  canonical,
-  type = "website",
-  publishedTime
+	title = "Ray Li - Entrepreneur, AI Founder & Software Engineer",
+	description = "Entrepreneur and AI founder building innovative solutions. From data scientist at Amazon to founder of Vectrro, exploring the intersection of AI and business.",
+	image = "/assets/images/og-image.png",
+	canonical,
+	type = "website",
+	publishedTime,
 } = Astro.props;
 
-const siteUrl = "https://rayl.info";
+const siteUrl = Astro.site?.origin ?? "https://rayl.info";
 const fullImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
 const canonicalURL = canonical || Astro.url.href;
 ---

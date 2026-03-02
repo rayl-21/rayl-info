@@ -1,20 +1,23 @@
 ---
-import Layout from "./main.astro";
 import BlogSchema from "../components/blog-schema.astro";
+import Layout from "./main.astro";
 const { frontmatter } = Astro.props;
 
 // Generate ISO date for article:published_time
-const dateMatch = frontmatter.dateFormatted?.match(/(\w+)\s+(\d+)\w*,\s+(\d{4})/);
+const dateMatch = frontmatter.dateFormatted?.match(
+	/(\w+)\s+(\d+)\w*,\s+(\d{4})/,
+);
 let publishedTime;
 if (dateMatch) {
-  const [_, month, day, year] = dateMatch;
-  publishedTime = new Date(`${month} ${day}, ${year}`).toISOString();
+	const [_, month, day, year] = dateMatch;
+	publishedTime = new Date(`${month} ${day}, ${year}`).toISOString();
 }
 
 // Extract the slug from the pathname - handle trailing slashes
-const pathParts = Astro.url.pathname.split('/').filter(part => part);
-const postSlug = pathParts[pathParts.length - 1] || '';
-const postUrl = postSlug ? `https://rayl.info/post/${postSlug}/` : 'https://rayl.info/';
+const pathParts = Astro.url.pathname.split("/").filter((part) => part);
+const postSlug = pathParts[pathParts.length - 1] || "";
+const site = Astro.site ?? new URL("https://rayl.info");
+const postUrl = postSlug ? new URL(`/post/${postSlug}/`, site).href : site.href;
 ---
 
 <Layout 

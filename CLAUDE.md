@@ -6,9 +6,7 @@ Ray's personal website built with Astro, showcasing his entrepreneurial journey 
 ## Key Files & Structure
 - `src/pages/` - Main pages (index, about, posts, projects) 
 - `src/components/` - Reusable Astro components
-  - `ui/` - React-based Magic UI components (border-beam, magic-card, meteors)
-  - `home/` - Homepage sections (projects, writings, separator, latest-posts)
-  - `magic-adventure.astro` - Expandable project cards with Alpine.js
+  - `home/` - Homepage sections (projects, separator, latest-posts)
   - `entrepreneurial-journey.astro` - Timeline component showcasing career progression
   - `posts-loop.astro` - Reusable component for displaying blog posts with count limit
 - `src/content/post/` - Technical blog posts (2 posts on drayage market analysis and trucker fees)
@@ -16,19 +14,20 @@ Ray's personal website built with Astro, showcasing his entrepreneurial journey 
 - `public/assets/images/` - Static images including company logos, Ray's avatar, and OG image
 
 ## Development Commands
-- `npm run dev` - Start development server
-- `npm run build` - Build for production (includes astro check)
-- `npm run preview` - Preview production build
-- `npm run check` - Run Biome linter with auto-fix
+- `pnpm run dev` - Start development server
+- `pnpm run build` - Build for production (includes astro check)
+- `pnpm run preview` - Preview production build
+- `pnpm run check` - Run Biome linter with auto-fix
 
 ## Deployment
 - **Platform**: Cloudflare Pages
-- **Build command**: `npm run build`
+- **Build command**: `pnpm run build`
 - **Output directory**: `dist`
 - **Deploy via**: `wrangler pages deploy dist --project-name rayl-info`
 - **Production URL**: https://rayl.info
 
 ## Recent Changes & Current State
+- Codebase hygiene cleanup: removed dead React/Magic UI components, unused dependencies, dead imports
 - Added "Latest Posts" section to homepage displaying 5 most recent blog posts
 - Integrated latest posts with consistent styling using existing PostsLoop component
 - Homepage now features three main content sections: Adventures, Latest Posts, and footer
@@ -36,8 +35,7 @@ Ray's personal website built with Astro, showcasing his entrepreneurial journey 
 - Fixed favicon and OpenGraph image configuration for better social sharing
 - Added sitemap generation via @astrojs/sitemap integration
 - Completed website redesign with new branding
-- Added Magic UI components (border-beam, magic-card, meteors) with React integration
-- Enhanced UI with adventure and entrepreneurial journey components using Alpine.js
+- Enhanced UI with entrepreneurial journey component using Alpine.js
 - Streamlined blog content to focus on key technical posts
 - Git repository configured and deployed to Cloudflare Pages
 
@@ -45,9 +43,7 @@ Ray's personal website built with Astro, showcasing his entrepreneurial journey 
 - **Framework**: Astro 4.8.2
 - **Language**: TypeScript 5.4.5
 - **Styling**: Tailwind CSS 3.4.3 with Typography plugin
-- **UI Components**: Magic UI (React-based animated components)
 - **Interactivity**: Alpine.js (via x-data directives)
-- **Animation**: Framer Motion 12.23.12
 - **Build Tools**: Biome 1.7.3 for linting, pnpm 9.12.2 for package management
 - **Deployment**: Cloudflare Pages via Wrangler
 - **SEO**: @astrojs/sitemap 3.5.1 for sitemap generation
@@ -55,7 +51,7 @@ Ray's personal website built with Astro, showcasing his entrepreneurial journey 
 ## Architecture & Code Quality Assessment
 
 ### Good Taste Elements ✅
-- Clean component separation with Astro for static content and React for interactive UI
+- Clean component separation with Astro for static content and Alpine.js for interactivity
 - Minimal dependencies - only essential packages included
 - Simple data structure using JSON collections instead of complex database
 - No special-case handling in component logic - uses consistent patterns
@@ -66,14 +62,11 @@ Ray's personal website built with Astro, showcasing his entrepreneurial journey 
 - **Data Structure First**: Simple JSON files for data, no unnecessary abstractions
 - **No Over-Engineering**: Direct file structure, no complex build pipelines
 - **Pragmatic Choices**: Alpine.js for simple interactivity instead of full React everywhere
-- **Clean Separation**: Static content (Astro) vs interactive components (React/Alpine)
+- **Clean Separation**: Static content (Astro) vs interactive components (Alpine.js)
 
 ### Technical Debt & Improvements Needed
 - No TypeScript strict mode enforcement in tsconfig
-- Missing proper error boundaries for React components
 - No automated testing infrastructure
-- Could eliminate some animation complexity in magic-adventure component
-- No React integration configured (@astrojs/react not installed) - React components are built but may not render properly
 - Missing path aliases beyond base @/* mapping
 
 ## Instructions for Claude
@@ -273,9 +266,9 @@ When seeing code, immediately make three-layer judgment:
 1. Use resolve-library-id("tailwindcss")
 2. Use get-library-docs with topic="utilities" for utility classes
 
-# Scenario 3: React hooks documentation
-1. Use resolve-library-id("react")
-2. Use get-library-docs with topic="hooks" for hooks reference
+# Scenario 3: Alpine.js documentation
+1. Use resolve-library-id("alpinejs")
+2. Use get-library-docs with topic="directives" for directive reference
 ```
 
 #### 3. **Playwright MCP Server** - Browser Automation & Testing
@@ -300,7 +293,7 @@ When seeing code, immediately make three-layer judgment:
 4. Use browser_snapshot to verify accessibility
 
 # Scenario 2: Testing interactive components
-1. Navigate to page with Magic UI components
+1. Navigate to page with Alpine.js components
 2. Use browser_click on expandable cards
 3. Use browser_evaluate to check animation states
 4. Use browser_console_messages to catch errors
