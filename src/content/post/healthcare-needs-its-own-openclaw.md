@@ -1,8 +1,7 @@
 ---
-layout: ../../layouts/post.astro
 title: "Healthcare Needs Its Own OpenClaw"
 description: "OpenClaw proved open-source AI assistants can rival proprietary tools. Healthcare's compliance crisis demands the same model."
-dateFormatted: "Mar 1st, 2026"
+pubDate: 2026-03-01
 ---
 
 An open-source AI assistant called [OpenClaw](https://github.com/openclaw/openclaw) recently crossed 244,000 GitHub stars, making it one of the most popular open-source projects in the world. What it did was simple in concept: let anyone run a personal AI assistant on their own machine, connected to the messaging apps they already use, without handing their data to a third party.

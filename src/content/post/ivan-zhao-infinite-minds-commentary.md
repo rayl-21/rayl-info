@@ -1,8 +1,7 @@
 ---
-layout: ../../layouts/post.astro
 title: Commentary on "Steam, Steel, and Infinite Minds"
 description: A practical read on Ivan Zhao's AI essay through the lens of operational reality
-dateFormatted: Dec 25th, 2025
+pubDate: 2025-12-25
 ---
 
 Ivan Zhao calls AI a "miracle material" like steel. I like that framing. It forces you to zoom out. Steel didn't just make old buildings stronger; it made skyscrapers possible. AI is the same. It's not just about faster workflows. It's about different workflows.

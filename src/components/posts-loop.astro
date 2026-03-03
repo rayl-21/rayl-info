@@ -1,27 +1,32 @@
 ---
 import { getCollection } from "astro:content";
-const allPosts = await getCollection("post");
+
+const now = new Date();
+const allPosts = await getCollection("post", ({ data }) => {
+  return import.meta.env.DEV || data.pubDate <= now;
+});
 
 const { count } = Astro.props;
 
-function parseDate(dateStr) {
-	const [month, day, year] = dateStr.split(" ");
-	return new Date(`${month} ${Number.parseInt(day)}, ${year}`);
+function formatDate(date) {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const day = date.getUTCDate();
+  const suffix = [11, 12, 13].includes(day) ? 'th'
+    : day % 10 === 1 ? 'st'
+    : day % 10 === 2 ? 'nd'
+    : day % 10 === 3 ? 'rd'
+    : 'th';
+  return `${months[date.getUTCMonth()]} ${day}${suffix}, ${date.getUTCFullYear()}`;
 }
 
 const sortedPosts = allPosts
-	.map((post) => ({
-		...post,
-		date: parseDate(post.data.dateFormatted),
-	}))
-	.sort((a, b) => b.date.getTime() - a.date.getTime());
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
-const postsLoop = sortedPosts.slice(0, count).map((post) => {
-	return {
-		...(post.data || {}),
-		link: `/post/${post.slug}`,
-	};
-});
+const postsLoop = sortedPosts.slice(0, count).map((post) => ({
+  ...post.data,
+  formattedDate: formatDate(post.data.pubDate),
+  link: `/post/${post.slug}`,
+}));
 ---
 
 {
@@ -85,7 +90,7 @@ const postsLoop = sortedPosts.slice(0, count).map((post) => {
             <span>{post.description}</span>
           </p>
           <div class="mt-2.5 text-xs font-medium text-neutral-800 dark:text-neutral-300">
-            Posted on {post.dateFormatted}
+            Posted on {post.formattedDate}
           </div>
         </div>
       </div>
