@@ -15,10 +15,10 @@ import Layout from "../layouts/main.astro";
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://rayl.info/#website",
+    "@id": `${Astro.site?.origin ?? "https://rayl.info"}/#website`,
     name: "Ray Li",
-    url: "https://rayl.info",
-    author: { "@id": "https://rayl.info/#person" },
+    url: Astro.site?.href ?? "https://rayl.info",
+    author: { "@id": `${Astro.site?.origin ?? "https://rayl.info"}/#person` },
   })} />
   <div
     class="relative z-20 w-full max-w-4xl mx-auto mt-16 px-7 md:mt-24 lg:mt-32 xl:px-0"

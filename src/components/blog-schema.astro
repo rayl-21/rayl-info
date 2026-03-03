@@ -20,7 +20,7 @@ const schema = {
 	description: description,
 	datePublished: datePublished,
 	...(dateModified && { dateModified }),
-	image: image || "/assets/images/og-image.png",
+	image: image ? (image.startsWith("http") ? image : `${site.origin}${image}`) : `${site.origin}/assets/images/og-image.png`,
 	inLanguage: "en-US",
 	author: {
 		"@type": "Person",
