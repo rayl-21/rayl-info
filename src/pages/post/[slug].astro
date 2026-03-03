@@ -3,14 +3,14 @@ import { getCollection } from "astro:content";
 import PostLayout from "../../layouts/post.astro";
 
 export async function getStaticPaths() {
-  const now = new Date();
-  const postEntries = await getCollection("post", ({ data }) => {
-    return import.meta.env.DEV || data.pubDate <= now;
-  });
-  return postEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+	const now = new Date();
+	const postEntries = await getCollection("post", ({ data }) => {
+		return import.meta.env.DEV || data.pubDate <= now;
+	});
+	return postEntries.map((entry) => ({
+		params: { slug: entry.slug },
+		props: { entry },
+	}));
 }
 
 const { entry } = Astro.props;
