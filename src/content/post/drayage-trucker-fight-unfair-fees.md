@@ -1,8 +1,7 @@
 ---
-layout: ../../layouts/post.astro
 title: Beat Unfair Fees - A Drayage Trucker's Guide to Fighting Demurrage and Detention Bills
 description: Five powerful strategies using FMC's new rules to challenge and defeat improper demurrage and detention charges for drayage truckers
-dateFormatted: Aug 26th, 2025
+pubDate: 2025-08-26
 ---
 
 For years, drayage truckers have been caught in the crossfire of demurrage and detention billing, often hit with unfair charges for delays completely outside their control. Those days are over. The Federal Maritime Commission's (FMC) new rule on Demurrage and Detention Billing Requirements gives you powerful legal tools to fight back.

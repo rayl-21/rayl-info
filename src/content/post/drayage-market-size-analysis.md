@@ -1,8 +1,7 @@
 ---
-layout: ../../layouts/post.astro
 title: How Big Is Drayage, Really?
 description: Using the latest federal and industry data to show drayage is roughly 3% of U.S. trucking by tonnage and revenue
-dateFormatted: Aug 28th, 2025
+pubDate: 2025-08-28
 ---
 
 Using the latest federal and industry data, drayage (container trucking to/from marine terminals and rail ramps) is roughly **~3% of U.S. trucking by tonnage** and **~3% by revenue**. The tonnage estimate comes from 2023 containerized import/export weights reported by the U.S. Bureau of Transportation Statistics (BTS) benchmarked against ATA's 2023 trucking tons. The revenue share uses IANA's drayage revenue estimate against ATA's 2023 trucking revenue.

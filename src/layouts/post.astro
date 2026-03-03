@@ -1,38 +1,27 @@
 ---
 import BlogSchema from "../components/blog-schema.astro";
 import Layout from "./main.astro";
-const { frontmatter } = Astro.props;
 
-// Generate ISO date for article:published_time
-const dateMatch = frontmatter.dateFormatted?.match(
-	/(\w+)\s+(\d+)\w*,\s+(\d{4})/,
-);
-let publishedTime;
-if (dateMatch) {
-	const [_, month, day, year] = dateMatch;
-	publishedTime = new Date(`${month} ${day}, ${year}`).toISOString();
-}
+const { title, description, pubDate, slug } = Astro.props;
 
-// Extract the slug from the pathname - handle trailing slashes
-const pathParts = Astro.url.pathname.split("/").filter((part) => part);
-const postSlug = pathParts[pathParts.length - 1] || "";
+const publishedTime = pubDate.toISOString();
 const site = Astro.site ?? new URL("https://rayl.info");
-const postUrl = postSlug ? new URL(`/post/${postSlug}/`, site).href : site.href;
+const postUrl = new URL(`/post/${slug}/`, site).href;
 ---
 
-<Layout 
-  title={`${frontmatter.title} | Ray Li`}
-  description={frontmatter.description}
+<Layout
+  title={`${title} | Ray Li`}
+  description={description}
   canonical={postUrl}
+  type="article"
+  publishedTime={publishedTime}
 >
-  {publishedTime && (
-    <BlogSchema 
-      title={frontmatter.title}
-      description={frontmatter.description}
-      datePublished={publishedTime}
-      url={postUrl}
-    />
-  )}
+  <BlogSchema
+    title={title}
+    description={description}
+    datePublished={publishedTime}
+    url={postUrl}
+  />
   <main
     class="relative z-30 max-w-4xl pb-1 mx-auto mt-10 bg-white dark:bg-neutral-950 md:rounded-t-md text-neutral-900"
   >
@@ -50,7 +39,7 @@ const postUrl = postSlug ? new URL(`/post/${postSlug}/`, site).href : site.href;
       <h1
         class="w-full max-w-2xl mx-auto text-3xl font-bold leading-tight tracking-tighter text-left md:mb-12 md:text-4xl dark:text-neutral-100 lg:text-5xl md:leading-none"
       >
-        {frontmatter.title}
+        {title}
       </h1>
     </div>
 
