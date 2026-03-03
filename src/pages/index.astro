@@ -12,6 +12,14 @@ import Layout from "../layouts/main.astro";
   description="Entrepreneur and AI founder building innovative solutions. From data scientist at Amazon to founder of Vectrro, exploring the intersection of AI and business."
 >
   <PersonSchema />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://rayl.info/#website",
+    name: "Ray Li",
+    url: "https://rayl.info",
+    author: { "@id": "https://rayl.info/#person" },
+  })} />
   <div
     class="relative z-20 w-full max-w-4xl mx-auto mt-16 px-7 md:mt-24 lg:mt-32 xl:px-0"
   >
@@ -59,8 +67,12 @@ import Layout from "../layouts/main.astro";
           <div class="relative z-30 px-10">
             <img
               src="/assets/images/ray-3d-avatar.png"
+              alt="Ray Li"
               loading="eager"
-              decoding="auto"
+              fetchpriority="high"
+              decoding="async"
+              width="790"
+              height="1189"
               class="relative z-30 w-full aspect-[790/1189] md:max-w-md mx-auto dark:-translate-y-0.5"
             />
           </div>

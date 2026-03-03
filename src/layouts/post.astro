@@ -2,7 +2,7 @@
 import BlogSchema from "../components/blog-schema.astro";
 import Layout from "./main.astro";
 
-const { title, description, pubDate, slug } = Astro.props;
+const { title, description, pubDate, updatedDate, slug } = Astro.props;
 
 const publishedTime = pubDate.toISOString();
 const site = Astro.site ?? new URL("https://rayl.info");
@@ -20,8 +20,18 @@ const postUrl = new URL(`/post/${slug}/`, site).href;
     title={title}
     description={description}
     datePublished={publishedTime}
+    dateModified={updatedDate ? updatedDate.toISOString() : publishedTime}
     url={postUrl}
   />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://rayl.info/" },
+      { "@type": "ListItem", position: 2, name: "Posts", item: "https://rayl.info/posts/" },
+      { "@type": "ListItem", position: 3, name: title },
+    ],
+  })} />
   <main
     class="relative z-30 max-w-4xl pb-1 mx-auto mt-10 bg-white dark:bg-neutral-950 md:rounded-t-md text-neutral-900"
   >

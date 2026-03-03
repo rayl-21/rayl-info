@@ -3,10 +3,12 @@ export interface Props {
 	title: string;
 	description: string;
 	datePublished: string;
+	dateModified?: string;
+	image?: string;
 	url: string;
 }
 
-const { title, description, datePublished, url } = Astro.props;
+const { title, description, datePublished, dateModified, image, url } = Astro.props;
 
 const site = Astro.site ?? new URL("https://rayl.info");
 const aboutUrl = new URL("/about", site).href;
@@ -17,8 +19,12 @@ const schema = {
 	headline: title,
 	description: description,
 	datePublished: datePublished,
+	...(dateModified && { dateModified }),
+	image: image || "/assets/images/og-image.png",
+	inLanguage: "en-US",
 	author: {
 		"@type": "Person",
+		"@id": "https://rayl.info/#person",
 		name: "Ray Li",
 		url: aboutUrl,
 	},
