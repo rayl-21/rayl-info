@@ -1,0 +1,174 @@
+---
+const { project } = Astro.props;
+const { name, icon, tagline, thesis, stats, architecture, links } = project;
+const { flow, infra, processes, capabilities, tech } = architecture;
+---
+
+<div class="relative duration-300 ease-out p-5 sm:p-7 group rounded-2xl">
+  <!-- Back layer: always visible, shifts right+down on hover -->
+  <span class="absolute inset-0 z-10 block w-full h-full duration-300 ease-out border border-dashed rounded-2xl border-neutral-300 dark:border-neutral-600 group-hover:translate-x-1 group-hover:translate-y-1"></span>
+  <!-- Front layer: always visible with bg, shifts left+up on hover -->
+  <span class="absolute inset-0 z-20 block w-full h-full duration-300 ease-out bg-white dark:bg-neutral-950 border border-dashed rounded-2xl border-neutral-300 dark:border-neutral-600 group-hover:-translate-x-1 group-hover:-translate-y-1"></span>
+  <!-- Content: tracks with front layer -->
+  <div class="relative z-30 duration-300 ease-out group-hover:-translate-x-1 group-hover:-translate-y-1">
+
+    <!-- Icon + name -->
+    <div class="flex items-center gap-2 mb-3">
+      <span class="text-2xl leading-none" aria-hidden="true">{icon}</span>
+      <span class="text-lg font-bold tracking-tight text-neutral-900 dark:text-neutral-100">{name}</span>
+    </div>
+
+    <!-- Tagline -->
+    <p class="text-base sm:text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-2">{tagline}</p>
+
+    <!-- Thesis -->
+    <p class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mb-5">{thesis}</p>
+
+    <!-- Dashed divider -->
+    <div class="border-t border-dashed border-neutral-300 dark:border-neutral-600 mb-5"></div>
+
+    <!-- Stats row -->
+    <div class="grid grid-cols-3 gap-4 sm:gap-8 mb-5">
+      {stats.map((stat) => (
+        <div class="flex flex-col gap-1">
+          <span class="font-mono text-lg sm:text-xl font-bold text-neutral-900 dark:text-neutral-100">{stat.value}</span>
+          <span class="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Expandable architecture panel -->
+    <details class="group/details">
+      <summary class="flex items-center gap-2 text-sm font-semibold text-neutral-700 dark:text-neutral-300 select-none mb-0">
+        <svg class="chevron w-3.5 h-3.5 text-neutral-500 dark:text-neutral-400 flex-shrink-0" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 2L8 6L4 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        How it works
+      </summary>
+
+      <div class="expand-wrapper">
+        <div>
+          <div class="mt-4 p-4 sm:p-6 rounded-xl bg-neutral-50 dark:bg-neutral-900 border-t border-dashed border-neutral-300 dark:border-neutral-600">
+            <div class="md:grid md:grid-cols-2 md:gap-6 space-y-5 md:space-y-0">
+
+              <!-- Left column: flow diagram -->
+              <div>
+                <p class="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-3 font-mono">Architecture</p>
+                <div class="flex flex-col items-center gap-0">
+                  {flow.map((step, i) => (
+                    <>
+                      <div class="w-full border border-dashed rounded-lg border-neutral-300 dark:border-neutral-600 px-3 py-2">
+                        <span class="font-mono text-xs sm:text-sm text-neutral-900 dark:text-neutral-100">{step.node}</span>
+                        <span class="font-mono text-xs text-neutral-500 dark:text-neutral-400 ml-2">{step.detail}</span>
+                      </div>
+                      {i < flow.length - 1 && (
+                        <div class="w-px h-4 border-l border-dashed border-neutral-300 dark:border-neutral-600"></div>
+                      )}
+                    </>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Right column: capabilities, infra, tech badges -->
+              <div class="space-y-4">
+
+                <!-- Capabilities -->
+                <div>
+                  <p class="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-2 font-mono">Capabilities</p>
+                  <ul class="space-y-1.5">
+                    {capabilities.map((cap) => (
+                      <li class="flex items-start gap-2 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+                        <span class="text-neutral-400 dark:text-neutral-500 mt-0.5 flex-shrink-0">—</span>
+                        <span>{cap}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <!-- Infra + processes -->
+                <div>
+                  <p class="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-2 font-mono">Infrastructure</p>
+                  <p class="font-mono text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">{infra}</p>
+                  <p class="font-mono text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed mt-1">{processes}</p>
+                </div>
+
+                <!-- Tech badges -->
+                <div>
+                  <p class="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-2 font-mono">Stack</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    {tech.map((t) => (
+                      <span class="font-mono text-xs px-2 py-0.5 rounded border border-dashed border-neutral-300 dark:border-neutral-600 text-neutral-600 dark:text-neutral-400 bg-white dark:bg-neutral-950">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Dashed divider before CTA -->
+    <div class="border-t border-dashed border-neutral-300 dark:border-neutral-600 mt-5 mb-4"></div>
+
+    <!-- CTA links -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+      <a
+        href={links.source}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 duration-200 ease-out underline underline-offset-2"
+      >
+        View Source
+      </a>
+      <a
+        href={links.story}
+        class="inline-flex w-auto px-4 py-2 text-xs font-semibold duration-300 ease-out border rounded-full bg-neutral-900 dark:bg-white dark:text-neutral-900 text-neutral-100 hover:border-neutral-700 border-neutral-900 dark:hover:border-neutral-300 hover:bg-white dark:hover:bg-black dark:hover:text-white hover:text-neutral-900"
+      >
+        Read the Story
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  details summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  details summary .chevron {
+    transition: transform 0.2s ease-out;
+  }
+  details[open] summary .chevron {
+    transform: rotate(90deg);
+  }
+
+  /* Smooth expand via ::details-content (Baseline 2025) */
+  details::details-content {
+    transition: content-visibility 300ms allow-discrete, opacity 300ms ease-out;
+    opacity: 0;
+  }
+  details[open]::details-content {
+    opacity: 1;
+  }
+
+  /* Grid fallback for smooth height animation */
+  details .expand-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+  }
+  details[open] .expand-wrapper {
+    grid-template-rows: 1fr;
+  }
+  details .expand-wrapper > div {
+    overflow: hidden;
+  }
+</style>

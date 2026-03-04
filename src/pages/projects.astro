@@ -1,21 +1,38 @@
 ---
+import projects from "../collections/projects.json";
+import AdventureCard from "../components/adventure-card.astro";
 import PageHeading from "../components/page-heading.astro";
+import Project from "../components/project.astro";
 import Layout from "../layouts/main.astro";
+
+const featured = projects.filter((p) => p.featured);
+const rest = projects.filter((p) => !p.featured);
 ---
 
 <Layout title="My Projects">
-  <section class="relative z-20 max-w-2xl mx-auto my-12 px-7 lg:px-0">
+  <section class="relative z-20 max-w-4xl mx-auto my-12 px-7 lg:px-0">
     <PageHeading
-      title="My Projects"
-      description="Here are some of the current projects I've been working on. I really enjoy creating new projects and coming up with new ideas. I'm always working on something new, so check back often!"
+      title="My Adventures"
+      description="Things I've built, deployed, and run in production. Some shipped quietly. Some broke loudly. All taught me something."
     />
 
-    <div class="z-50 flex flex-col items-stretch w-full gap-5 my-8">
-      <div class="text-center py-16">
-        <p class="text-lg text-neutral-600 dark:text-neutral-400">
-          Coming soon... innovative projects and adventures await!
-        </p>
-      </div>
+    <div class="flex flex-col gap-8 my-8">
+      {featured.map((project) => <AdventureCard project={project} />)}
     </div>
+
+    {
+      rest.length > 0 && (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
+          {rest.map((project) => (
+            <Project
+              name={project.name}
+              description={project.tagline}
+              url={project.url}
+              image={project.image}
+            />
+          ))}
+        </div>
+      )
+    }
   </section>
 </Layout>
