@@ -38,9 +38,9 @@ const { flow, infra, processes, capabilities, tech } = architecture;
     </div>
 
     <!-- Expandable architecture panel -->
-    <details class="group/details">
-      <summary class="flex items-center gap-2 text-sm font-semibold text-neutral-700 dark:text-neutral-300 select-none mb-0">
-        <svg class="chevron w-3.5 h-3.5 text-neutral-500 dark:text-neutral-400 flex-shrink-0" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <details>
+      <summary class="flex items-center gap-2 text-sm font-semibold text-neutral-700 dark:text-neutral-300 select-none">
+        <svg class="chevron w-3.5 h-3.5 text-neutral-500 dark:text-neutral-400 flex-shrink-0" aria-hidden="true" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 2L8 6L4 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         How it works
@@ -120,12 +120,14 @@ const { flow, infra, processes, capabilities, tech } = architecture;
         href={links.source}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label={`View source code for ${name}`}
         class="text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 duration-200 ease-out underline underline-offset-2"
       >
         View Source
       </a>
       <a
         href={links.story}
+        aria-label={`Read the story behind ${name}`}
         class="inline-flex w-auto px-4 py-2 text-xs font-semibold duration-300 ease-out border rounded-full bg-neutral-900 dark:bg-white dark:text-neutral-900 text-neutral-100 hover:border-neutral-700 border-neutral-900 dark:hover:border-neutral-300 hover:bg-white dark:hover:bg-black dark:hover:text-white hover:text-neutral-900"
       >
         Read the Story
@@ -159,16 +161,18 @@ const { flow, infra, processes, capabilities, tech } = architecture;
     opacity: 1;
   }
 
-  /* Grid fallback for smooth height animation */
-  details .expand-wrapper {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.3s ease-out;
-  }
-  details[open] .expand-wrapper {
-    grid-template-rows: 1fr;
-  }
-  details .expand-wrapper > div {
-    overflow: hidden;
+  /* Grid fallback: only when ::details-content is NOT supported */
+  @supports not (selector(::details-content)) {
+    details .expand-wrapper {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s ease-out;
+    }
+    details[open] .expand-wrapper {
+      grid-template-rows: 1fr;
+    }
+    details .expand-wrapper > div {
+      overflow: hidden;
+    }
   }
 </style>

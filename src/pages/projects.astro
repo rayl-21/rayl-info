@@ -16,7 +16,7 @@ const rest = projects.filter((p) => !p.featured);
       description="Things I've built, deployed, and run in production. Some shipped quietly. Some broke loudly. All taught me something."
     />
 
-    <div class="flex flex-col gap-8 my-8">
+    <div class="space-y-5 my-8">
       {featured.map((project) => <AdventureCard project={project} />)}
     </div>
 
