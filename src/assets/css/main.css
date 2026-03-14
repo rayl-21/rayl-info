@@ -96,7 +96,7 @@ html.dark .dot-grid-bg::before {
   .hero-word { transform: none; }
 }
 
-/* --- Ambient mesh visual --- */
+/* --- Ambient mesh visual (animated drift) --- */
 .hero-mesh {
   position: absolute;
   top: -20%;
@@ -112,9 +112,15 @@ html.dark .dot-grid-bg::before {
   filter: blur(60px);
   pointer-events: none;
   z-index: 0;
+  animation: mesh-drift 12s ease-in-out infinite;
+}
+@keyframes mesh-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(3%, -4%) scale(1.05); }
+  66% { transform: translate(-2%, 3%) scale(0.97); }
 }
 
-/* --- Floating particles (miromannino-inspired) --- */
+/* --- Canvas particle container --- */
 .hero-particles {
   position: absolute;
   inset: 0;
@@ -122,51 +128,10 @@ html.dark .dot-grid-bg::before {
   pointer-events: none;
   z-index: 1;
 }
-.hero-particles::before,
-.hero-particles::after {
-  content: '';
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background: rgba(168, 162, 158, 0.4);
-  animation: float-particle 20s linear infinite;
-}
-.hero-particles::before {
-  top: 30%;
-  left: 15%;
-  box-shadow:
-    40vw 10vh 0 0 rgba(168, 162, 158, 0.3),
-    70vw 60vh 0 0 rgba(168, 162, 158, 0.2),
-    20vw 80vh 0 0 rgba(168, 162, 158, 0.15),
-    55vw 25vh 0 0 rgba(168, 162, 158, 0.25),
-    85vw 45vh 0 0 rgba(168, 162, 158, 0.2),
-    10vw 55vh 0 0 rgba(168, 162, 158, 0.3),
-    65vw 85vh 0 0 rgba(168, 162, 158, 0.15),
-    35vw 40vh 0 0 rgba(168, 162, 158, 0.2),
-    90vw 15vh 0 0 rgba(168, 162, 158, 0.25),
-    50vw 70vh 0 0 rgba(168, 162, 158, 0.2);
-}
-.hero-particles::after {
-  top: 60%;
-  left: 45%;
-  animation-delay: -10s;
-  animation-duration: 25s;
-  box-shadow:
-    30vw 20vh 0 0 rgba(6, 182, 212, 0.15),
-    75vw 40vh 0 0 rgba(6, 182, 212, 0.1),
-    15vw 70vh 0 0 rgba(6, 182, 212, 0.12),
-    60vw 5vh 0 0 rgba(6, 182, 212, 0.1),
-    45vw 50vh 0 0 rgba(6, 182, 212, 0.08),
-    80vw 75vh 0 0 rgba(6, 182, 212, 0.12),
-    25vw 30vh 0 0 rgba(6, 182, 212, 0.1);
-}
-@keyframes float-particle {
-  0% { transform: translateY(0) translateX(0); }
-  25% { transform: translateY(-15px) translateX(8px); }
-  50% { transform: translateY(-5px) translateX(-5px); }
-  75% { transform: translateY(-20px) translateX(12px); }
-  100% { transform: translateY(0) translateX(0); }
+.hero-particles canvas {
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
 }
 
 /* --- Typewriter cursor blink --- */
@@ -181,7 +146,8 @@ html.dark .dot-grid-bg::before {
 /* --- Accessibility fallbacks --- */
 @media (prefers-reduced-motion: reduce) {
   .hero-sub, .hero-block { opacity: 1; }
-  .hero-particles::before, .hero-particles::after { animation: none; }
+  .hero-mesh { animation: none; }
+  .hero-particles canvas { display: none; }
   #typewriter-cursor { animation: none; }
 }
 @media (scripting: none) {
