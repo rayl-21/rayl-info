@@ -1,0 +1,28 @@
+---
+let lastActivity = null;
+let repoName = null;
+
+try {
+  const response = await fetch('https://api.github.com/users/rayl-21/events/public');
+  if (response.ok) {
+    const events = await response.json();
+    const lastPush = events.find((e) => e.type === 'PushEvent');
+    if (lastPush) {
+      lastActivity = new Date(lastPush.created_at).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+      });
+      repoName = lastPush.repo.name.split('/')[1];
+    }
+  }
+} catch {
+  // Build-time fetch failed; widget won't render
+}
+---
+
+{lastActivity && (
+  <div class="flex items-center gap-2 text-xs text-stone-400 dark:text-stone-500 font-mono">
+    <span class="w-1.5 h-1.5 rounded-full bg-accent pulse-dot" aria-hidden="true"></span>
+    <span>Last shipped: {lastActivity} — {repoName}</span>
+  </div>
+)}

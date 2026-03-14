@@ -2,7 +2,7 @@
 import Footer from "../components/footer.astro";
 import Header from "../components/header.astro";
 import SEO from "../components/seo.astro";
-import SquareLines from "../components/square-lines.astro";
+import { ViewTransitions } from "astro:transitions";
 const { title, description, image, canonical, type, publishedTime } =
 	Astro.props;
 ---
@@ -37,10 +37,11 @@ const { title, description, image, canonical, type, publishedTime } =
     <script src="../assets/css/main.css"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <ViewTransitions />
     <Fragment set:html={import.meta.env.HEADER_INJECT} />
   </head>
-  <body class="antialiased bg-white dark:bg-neutral-950">
-    <SquareLines />
+  <body class="antialiased bg-stone-50 dark:bg-stone-950 dot-grid-bg">
+    <svg style="display:none" aria-hidden="true"><defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter></defs></svg>
     <Header />
     <slot />
     <Footer />

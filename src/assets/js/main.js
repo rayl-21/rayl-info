@@ -5,10 +5,10 @@ window.darkMode = false;
 const stickyClasses = ["fixed", "h-14"];
 const unstickyClasses = ["absolute", "h-20"];
 const stickyClassesContainer = [
-	"border-neutral-300/50",
-	"bg-white/80",
-	"dark:border-neutral-600/40",
-	"dark:bg-neutral-900/60",
+	"border-stone-300/50",
+	"bg-stone-50/80",
+	"dark:border-stone-600/40",
+	"dark:bg-stone-900/60",
 	"backdrop-blur-2xl",
 ];
 const unstickyClassesContainer = ["border-transparent"];
@@ -126,7 +126,7 @@ window.applyMenuItemClasses = () => {
 	const menuItems = document.querySelectorAll("#menu a");
 	for (let i = 0; i < menuItems.length; i++) {
 		if (menuItems[i].pathname === window.location.pathname) {
-			menuItems[i].classList.add("text-neutral-900", "dark:text-white");
+			menuItems[i].classList.add("text-accent", "dark:text-accent-light");
 		}
 	}
 	//:class="{ 'text-neutral-900 dark:text-white': window.location.pathname == '{menu.url}', 'text-neutral-700 dark:text-neutral-400': window.location.pathname != '{menu.url}' }"
@@ -162,3 +162,26 @@ window.closeMobileMenu = () => {
 	document.getElementById("menu").classList.add("hidden");
 	document.getElementById("mobileMenuBackground").classList.add("hidden");
 };
+
+// Scroll reveal animation — uses astro:page-load for View Transitions compat
+document.addEventListener('astro:page-load', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var siblings = Array.from(entry.target.parentElement.children).filter(
+          function(el) { return el.hasAttribute('data-reveal'); }
+        );
+        var delay = siblings.indexOf(entry.target) * 80;
+        entry.target.style.transitionDelay = delay + 'ms';
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+  document.querySelectorAll('[data-reveal]').forEach(function(el) {
+    el.classList.remove('is-visible');
+    el.style.transitionDelay = '';
+    observer.observe(el);
+  });
+});
