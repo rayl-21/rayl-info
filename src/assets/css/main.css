@@ -85,9 +85,15 @@ html.dark .dot-grid-bg::before {
 }
 
 /* --- GSAP initial states (prevent FOUC) --- */
+.hero-word {
+  transform: translateY(120%);
+}
 .hero-sub,
 .hero-block {
   opacity: 0;
+}
+@media (scripting: none) {
+  .hero-word { transform: none; }
 }
 
 /* --- Ambient mesh visual --- */

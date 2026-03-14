@@ -57,7 +57,15 @@ const { title, description, image, canonical, type, publishedTime } =
 
         // Hero entrance (homepage only)
         const heroWords = document.querySelectorAll('.hero-word');
-        if (heroWords.length) {
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (heroWords.length && reducedMotion) {
+          // Skip animations, just show everything
+          gsap.set('.hero-word', { y: '0%' });
+          gsap.set('.hero-sub, .hero-block', { opacity: 1 });
+          gsap.set('.hero-mesh', { opacity: 1 });
+          startTypewriter();
+        } else if (heroWords.length) {
           const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
           // Name words slide up from below
@@ -94,8 +102,8 @@ const { title, description, image, canonical, type, publishedTime } =
           if (!el) return;
           const words = ['AI agents', 'data products', 'trucking software', 'things that work'];
           let wordIdx = 0;
-          let charIdx = 0;
-          let deleting = false;
+          let charIdx = words[0].length;
+          let deleting = true;
 
           function tick() {
             const word = words[wordIdx];
