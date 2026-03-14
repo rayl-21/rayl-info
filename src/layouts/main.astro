@@ -69,7 +69,10 @@ const { title, description, image, canonical, type, publishedTime } =
           const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
           // Name words slide up from below
-          tl.from('.hero-word', { y: '120%', duration: 0.9, stagger: 0.15 });
+          tl.fromTo('.hero-word',
+            { y: '120%' },
+            { y: '0%', duration: 0.9, stagger: 0.15 }
+          );
 
           // Subtitle blurs in
           tl.fromTo('.hero-sub',
