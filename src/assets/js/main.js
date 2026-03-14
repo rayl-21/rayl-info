@@ -2,15 +2,9 @@
 
 window.darkMode = false;
 
-const stickyClasses = ["fixed", "h-14"];
+const stickyClasses = ["fixed", "h-14", "bg-stone-50/80", "dark:bg-stone-950/60", "backdrop-blur-2xl", "border-b", "border-stone-200/60", "dark:border-stone-800/40"];
 const unstickyClasses = ["absolute", "h-20"];
-const stickyClassesContainer = [
-	"border-stone-300/50",
-	"bg-stone-50/80",
-	"dark:border-stone-700/40",
-	"dark:bg-stone-950/60",
-	"backdrop-blur-2xl",
-];
+const stickyClassesContainer = [];
 const unstickyClassesContainer = ["border-transparent"];
 let headerElement = null;
 
