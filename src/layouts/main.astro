@@ -34,9 +34,10 @@ const { title, description, image, canonical, type, publishedTime } =
     </style>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
     <script src="../assets/css/main.css"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <ViewTransitions />
     <Fragment set:html={import.meta.env.HEADER_INJECT} />
   </head>
@@ -46,6 +47,94 @@ const { title, description, image, canonical, type, publishedTime } =
     <slot />
     <Footer />
     <script src="../assets/js/main.js"></script>
+    <script>
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      gsap.registerPlugin(ScrollTrigger);
+
+      document.addEventListener('astro:page-load', () => {
+        ScrollTrigger.getAll().forEach(t => t.kill());
+
+        // Hero entrance (homepage only)
+        const heroWords = document.querySelectorAll('.hero-word');
+        if (heroWords.length) {
+          const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+          // Name words slide up from below
+          tl.from('.hero-word', { y: '120%', duration: 0.9, stagger: 0.15 });
+
+          // Subtitle blurs in
+          tl.fromTo('.hero-sub',
+            { opacity: 0, y: 16, filter: 'blur(6px)' },
+            { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.7 },
+            '-=0.4'
+          );
+
+          // Scroll indicator fades in
+          tl.fromTo('.hero-block',
+            { opacity: 0 },
+            { opacity: 1, duration: 0.8 },
+            '-=0.2'
+          );
+
+          // Ambient mesh fades in
+          tl.fromTo('.hero-mesh',
+            { opacity: 0, scale: 0.9 },
+            { opacity: 1, scale: 1, duration: 1.5, ease: 'power2.out' },
+            0.2
+          );
+
+          // Typewriter effect after entrance
+          tl.call(() => startTypewriter(), [], '+=0.3');
+        }
+
+        // Typewriter: cycles through words with typing/deleting
+        function startTypewriter() {
+          const el = document.getElementById('typewriter-text');
+          if (!el) return;
+          const words = ['AI agents', 'data products', 'trucking software', 'things that work'];
+          let wordIdx = 0;
+          let charIdx = 0;
+          let deleting = false;
+
+          function tick() {
+            const word = words[wordIdx];
+            if (!deleting) {
+              charIdx++;
+              el.textContent = word.substring(0, charIdx);
+              if (charIdx === word.length) {
+                setTimeout(() => { deleting = true; tick(); }, 2000);
+                return;
+              }
+              setTimeout(tick, 70 + Math.random() * 40);
+            } else {
+              charIdx--;
+              el.textContent = word.substring(0, charIdx);
+              if (charIdx === 0) {
+                deleting = false;
+                wordIdx = (wordIdx + 1) % words.length;
+                setTimeout(tick, 400);
+                return;
+              }
+              setTimeout(tick, 40);
+            }
+          }
+          tick();
+        }
+
+        // ScrollTrigger for below-fold sections
+        gsap.utils.toArray<Element>('.scroll-reveal').forEach(el => {
+          gsap.from(el, {
+            scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+            opacity: 0, y: 30, duration: 0.6, ease: 'power3.out'
+          });
+        });
+      });
+
+      document.addEventListener('astro:before-swap', () => {
+        ScrollTrigger.getAll().forEach(t => t.kill());
+      });
+    </script>
     <Fragment set:html={import.meta.env.FOOTER_INJECT} />
   </body>
 </html>

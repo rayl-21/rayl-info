@@ -7,8 +7,8 @@ const unstickyClasses = ["absolute", "h-20"];
 const stickyClassesContainer = [
 	"border-stone-300/50",
 	"bg-stone-50/80",
-	"dark:border-stone-600/40",
-	"dark:bg-stone-900/60",
+	"dark:border-stone-700/40",
+	"dark:bg-stone-950/60",
 	"backdrop-blur-2xl",
 ];
 const unstickyClassesContainer = ["border-transparent"];
@@ -163,25 +163,3 @@ window.closeMobileMenu = () => {
 	document.getElementById("mobileMenuBackground").classList.add("hidden");
 };
 
-// Scroll reveal animation — uses astro:page-load for View Transitions compat
-document.addEventListener('astro:page-load', function() {
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        var siblings = Array.from(entry.target.parentElement.children).filter(
-          function(el) { return el.hasAttribute('data-reveal'); }
-        );
-        var delay = siblings.indexOf(entry.target) * 80;
-        entry.target.style.transitionDelay = delay + 'ms';
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
-
-  document.querySelectorAll('[data-reveal]').forEach(function(el) {
-    el.classList.remove('is-visible');
-    el.style.transitionDelay = '';
-    observer.observe(el);
-  });
-});

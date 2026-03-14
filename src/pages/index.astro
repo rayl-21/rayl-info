@@ -11,27 +11,68 @@ import Layout from "../layouts/main.astro";
 >
   <PersonSchema />
 
-  <div class="max-w-3xl mx-auto px-7 lg:px-0 mt-16 md:mt-24 lg:mt-32" data-reveal>
+  <!-- Override header colors for dark hero -->
+  <style>
+    #header nav { color: rgb(200 196 193); }
+    #header #darkToggle { color: rgb(245 245 244); }
+    #header a[href="/"] { color: rgb(245 245 244); }
+    #header.fixed nav { color: rgb(120 113 108); }
+    #header.fixed #darkToggle { color: rgb(41 37 36); }
+    #header.fixed a[href="/"] { color: rgb(0 0 0); }
+    html.dark #header.fixed #darkToggle { color: rgb(255 255 255); }
+    html.dark #header.fixed nav { color: rgb(168 162 158); }
+    html.dark #header.fixed a[href="/"] { color: rgb(255 255 255); }
+  </style>
 
-    <!-- Identity block -->
-    <div class="flex items-center gap-3 mb-8">
-      <img
-        src="/assets/images/favicon-rayl.png"
-        alt="Ray Li"
-        width="40"
-        height="40"
-        class="rounded-full"
-        loading="eager"
-        decoding="auto"
-      />
-      <div>
-        <span class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold gradient-name">Ray Li</span>
-        <span class="block text-stone-500 dark:text-stone-400 text-sm font-mono mt-0.5">Founder &amp; data scientist</span>
+  <!-- Full-viewport hero with extended gradient fade -->
+  <section class="hero-section relative flex flex-col justify-center -mt-20 min-h-[110vh] bg-gradient-to-b from-stone-950 from-30% via-stone-900 via-70% to-stone-100 dark:to-stone-950 overflow-hidden">
+
+    <!-- Floating particles -->
+    <div class="hero-particles" aria-hidden="true"></div>
+
+    <!-- Ambient mesh -->
+    <div class="hero-mesh" aria-hidden="true"></div>
+
+    <div class="max-w-5xl mx-auto px-7 lg:px-0 w-full relative z-10">
+
+      <!-- Name -->
+      <div class="overflow-hidden mb-3">
+        <h1 class="hero-name font-heading font-bold text-stone-100 tracking-tight">
+          <span class="hero-word inline-block">Ray</span>
+          <span class="hero-word inline-block ml-[0.12em]">Li</span>
+        </h1>
+      </div>
+
+      <!-- Typewriter line -->
+      <div class="overflow-hidden mb-4">
+        <p class="hero-sub text-xl md:text-2xl text-stone-400 font-light">
+          I build <span id="typewriter-text" class="text-stone-200 font-medium"></span><span id="typewriter-cursor" class="text-accent">|</span>
+        </p>
+      </div>
+
+      <!-- Subtitle -->
+      <div class="overflow-hidden">
+        <p class="hero-sub font-mono text-xs md:text-sm text-stone-500 tracking-widest uppercase">
+          Founder &amp; data scientist
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-block absolute bottom-8 left-1/2 -translate-x-1/2">
+      <div class="w-5 h-8 rounded-full border border-stone-600 flex items-start justify-center pt-1.5">
+        <div class="w-1 h-1.5 rounded-full bg-stone-400 animate-bounce"></div>
       </div>
     </div>
 
+  </section>
+
+  <!-- Below-fold content -->
+  <div class="max-w-4xl mx-auto px-7 lg:px-0 pt-4 pb-16 md:pb-24">
+
     <!-- LIVE NOW block -->
-    <div class="mb-6" data-reveal>
+    <div class="scroll-reveal mb-8">
       <div class="flex items-center gap-2 mb-2">
         <span class="w-2 h-2 rounded-full bg-accent pulse-dot"></span>
         <span class="text-stone-500 dark:text-stone-400 font-mono text-xs tracking-widest uppercase">Live now</span>
@@ -44,14 +85,10 @@ import Layout from "../layouts/main.astro";
       </p>
     </div>
 
-    <!-- Divider -->
-    <div class="border-t border-stone-200 dark:border-stone-800 my-8"></div>
+    <div class="border-t border-stone-300 dark:border-stone-800 my-8 scroll-reveal"></div>
 
-    <!-- Build log entries -->
-    <div class="space-y-8" data-reveal>
-
-      <!-- OpenClaw entry -->
-      <div class="flex gap-6">
+    <div class="space-y-8">
+      <div class="flex gap-6 scroll-reveal">
         <span class="text-stone-400 dark:text-stone-500 font-mono text-sm w-10 shrink-0 pt-0.5">2025</span>
         <div>
           <p class="text-lg font-semibold text-stone-900 dark:text-stone-100">OpenClaw</p>
@@ -61,17 +98,13 @@ import Layout from "../layouts/main.astro";
           <p class="font-mono text-sm text-stone-500 dark:text-stone-400 mt-1">
             $0.30/mo · 24/7 · 23 sources
           </p>
-          <a
-            href="/projects"
-            class="inline-block mt-2 text-sm text-accent hover:text-accent-hover dark:text-accent-light"
-          >
+          <a href="/projects" class="inline-block mt-2 text-sm text-accent hover:text-accent-hover dark:text-accent-light">
             Read the build story →
           </a>
         </div>
       </div>
 
-      <!-- SimplePractice entry -->
-      <div class="flex gap-6">
+      <div class="flex gap-6 scroll-reveal">
         <span class="text-stone-400 dark:text-stone-500 font-mono text-sm w-10 shrink-0 pt-0.5">2023</span>
         <div>
           <p class="text-lg font-semibold text-stone-900 dark:text-stone-100">SimplePractice</p>
@@ -80,30 +113,16 @@ import Layout from "../layouts/main.astro";
           </p>
         </div>
       </div>
-
     </div>
 
-    <!-- CTA row -->
-    <div class="flex items-center gap-4 mt-10 text-sm" data-reveal>
-      <a href="/posts" class="text-accent hover:text-accent-hover dark:text-accent-light">
-        → Read the blog
-      </a>
+    <div class="scroll-reveal flex items-center gap-4 mt-10 text-sm">
+      <a href="/posts" class="text-accent hover:text-accent-hover dark:text-accent-light">→ Read the blog</a>
       <span class="text-stone-300 dark:text-stone-700">·</span>
-      <a
-        href="https://x.com/rayl1259"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-accent hover:text-accent-hover dark:text-accent-light"
-      >
-        Follow on X
-      </a>
+      <a href="https://x.com/rayl1259" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-hover dark:text-accent-light">Follow on X</a>
     </div>
-
   </div>
 
-  <div class="py-10 md:py-16"></div>
   <Projects />
-
   <div class="py-10 md:py-16"></div>
   <LatestPosts />
 </Layout>
