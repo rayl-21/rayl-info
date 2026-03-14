@@ -5,15 +5,15 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['"Instrument Serif"', 'Georgia', 'serif'],
+        display: ['"Bebas Neue"', 'Impact', 'sans-serif'],
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'Menlo', 'monospace'],
       },
       colors: {
         accent: {
-          DEFAULT: '#0d9488',
-          hover: '#0f766e',
-          light: '#14b8a6',
+          DEFAULT: '#06B6D4',
+          hover: '#0891B2',
+          light: '#22D3EE',
         },
       },
     },

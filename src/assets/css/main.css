@@ -105,8 +105,8 @@ html.dark .dot-grid-bg::before {
   height: 140%;
   background: radial-gradient(
     ellipse at 60% 50%,
-    rgba(20, 184, 166, 0.08) 0%,
-    rgba(13, 148, 136, 0.03) 40%,
+    rgba(6, 182, 212, 0.08) 0%,
+    rgba(8, 145, 178, 0.03) 40%,
     transparent 70%
   );
   filter: blur(60px);
@@ -153,13 +153,13 @@ html.dark .dot-grid-bg::before {
   animation-delay: -10s;
   animation-duration: 25s;
   box-shadow:
-    30vw 20vh 0 0 rgba(20, 184, 166, 0.15),
-    75vw 40vh 0 0 rgba(20, 184, 166, 0.1),
-    15vw 70vh 0 0 rgba(20, 184, 166, 0.12),
-    60vw 5vh 0 0 rgba(20, 184, 166, 0.1),
-    45vw 50vh 0 0 rgba(20, 184, 166, 0.08),
-    80vw 75vh 0 0 rgba(20, 184, 166, 0.12),
-    25vw 30vh 0 0 rgba(20, 184, 166, 0.1);
+    30vw 20vh 0 0 rgba(6, 182, 212, 0.15),
+    75vw 40vh 0 0 rgba(6, 182, 212, 0.1),
+    15vw 70vh 0 0 rgba(6, 182, 212, 0.12),
+    60vw 5vh 0 0 rgba(6, 182, 212, 0.1),
+    45vw 50vh 0 0 rgba(6, 182, 212, 0.08),
+    80vw 75vh 0 0 rgba(6, 182, 212, 0.12),
+    25vw 30vh 0 0 rgba(6, 182, 212, 0.1);
 }
 @keyframes float-particle {
   0% { transform: translateY(0) translateX(0); }
@@ -190,13 +190,13 @@ html.dark .dot-grid-bg::before {
 
 /* --- Gradient text for hero name --- */
 .gradient-name {
-  background: linear-gradient(135deg, #1c1917 40%, #0d9488 100%);
+  background: linear-gradient(135deg, #1c1917 40%, #06B6D4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 html.dark .gradient-name {
-  background: linear-gradient(135deg, #fafaf9 40%, #14b8a6 100%);
+  background: linear-gradient(135deg, #fafaf9 40%, #22D3EE 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
